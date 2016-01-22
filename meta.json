@@ -1,0 +1,26 @@
+{
+  "name": "texas-jobs-report",
+  "publishYear": 2016,
+  "publishDate": "2016-1-20T00:00:00Z",
+  "description": "<Project description>",
+  "url": "interactives.dallasnews.com/2016/texas-jobs-report/",
+  "id": "99507046934",
+  "authors": "<Project authors>",
+  "authorsFbook": "<Project authors' facebook links>",
+  "desk": "<e.g., entertainment>",
+  "section": "<e.g., books>",
+  "keywords": [
+    "interactives",
+    "dallas",
+    "dallas news",
+    "dfw news",
+    "dallas newspaper",
+    "dallas morning news",
+    "dallas morning news newspaper"
+  ],
+  "imgURL": "<Preview image url>",
+  "imgWidth": "<Preview image width>",
+  "imgHeight": "<Preview image height>",
+  "twitter": "<@siteHandle e.g. @dallasnews>",
+  "authorTwitter": "<@twitterHandle e.g. @AlanPeppard>"
+}

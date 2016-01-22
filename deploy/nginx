@@ -1,0 +1,9 @@
+location ~ ^/texas-jobs-report(/.*|$) {
+  alias /var/www/texas-jobs-report/public$1;
+  passenger_base_uri /texas-jobs-report;
+  passenger_app_root /var/www/texas-jobs-report;
+  passenger_document_root /var/www/texas-jobs-report/public;
+  passenger_enabled on;
+  passenger_app_type node;
+  passenger_startup_file app.js;
+}

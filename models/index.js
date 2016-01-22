@@ -1,0 +1,62 @@
+module.exports = function(db, cb){
+
+    db.define("texas_jobs_report", { 
+
+            id : {type: 'serial', key:true}, // Always create an ID field
+            date: Date,
+            month: String,
+            year: Number,
+            image: String,
+            image_credit: String,
+            image_cutline: {type: 'text', big: true},
+            main_headline: String,
+            main_deck: String,
+            byline: String,
+            title: String,
+            email: String,
+            twitter: String,
+            intro: {type: 'text', big: true},
+            blurb1_head: String,
+            blurb1: {type: 'text', big: true},
+            blurb2_head: String,
+            blurb2: {type: 'text', big: true},
+            blurb3_head: String,
+            blurb3: {type: 'text', big: true},
+            blurb4_head: String,
+            blurb4: {type: 'text', big: true},
+            texas_jobless_rate: Number,
+            dfw_jobless_rate: Number,
+            jobless_head: String,
+            jobless_chatter: String,
+            jobless_source: String,
+            industry_chatter: String,
+            state_employment: Number,
+            state_explainer: String,
+            state_source: String,
+            cat1: String,
+            cat1_amount: Number,
+            cat2: String,
+            cat2_amount: Number,
+            cat3: String,
+            cat3_amount: Number,
+            cat4: String,
+            cat4_amount: Number,
+            cat5: String,
+            cat5_amount: Number,
+            cat6: String,
+            cat6_amount: Number,
+            cat7: String,
+            cat7_amount: Number,
+            cat8: String,
+            cat8_amount: Number,
+            cat9: String,
+            cat9_amount: Number,
+            cat10: String,
+            cat10_amount: Number,
+            cat11: String,
+            cat11_amount: Number
+    });
+
+    return cb();
+
+}
