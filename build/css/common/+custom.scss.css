@@ -1,0 +1,85 @@
+.shareCommentsTop {
+  margin: 3.6rem 0 !important; }
+  .shareCommentsTop ul {
+    text-align: left !important; }
+
+.leftWell {
+  width: calc(100% - 660px);
+  float: left; }
+
+.blurb {
+  margin-top: 2.4rem;
+  padding-bottom: 2.4rem;
+  border-bottom: 1px solid #ebebeb; }
+  .blurb:last-of-type {
+    padding-bottom: 0;
+    border-bottom: 0; }
+  .blurb h4, .blurb p {
+    font-family: "Open Sans", Arial, sans-serif; }
+  .blurb h4 {
+    margin-bottom: .6rem; }
+    .blurb h4 .number {
+      width: 3rem;
+      height: 3rem;
+      background-color: #424242;
+      color: white;
+      display: inline-block;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 2rem;
+      line-height: 3rem;
+      margin-bottom: 0; }
+  .blurb p {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    margin-bottom: 0; }
+
+.rightWell {
+  width: 630px;
+  float: right;
+  padding-left: 30px;
+  border-left: 1px solid #797979;
+  font-family: "Open Sans", Arial, sans-serif; }
+  .rightWell h5, .rightWell h6 {
+    font-weight: bold; }
+  .rightWell table {
+    width: 100%;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    margin-bottom: 0; }
+    .rightWell table tr:first-of-type {
+      border-bottom: 1px solid #212121; }
+    .rightWell table tr:nth-of-type(even) {
+      background-color: #efebde; }
+    .rightWell table th {
+      font-weight: bold;
+      text-align: left; }
+      .rightWell table th:last-of-type {
+        text-align: right; }
+    .rightWell table td {
+      text-align: left; }
+      .rightWell table td:last-of-type {
+        text-align: right; }
+
+.imageBlock {
+  margin-bottom: 2.4rem; }
+
+.chart {
+  width: 280px;
+  float: left;
+  margin-right: 20px; }
+  .chart:last-of-type {
+    margin-right: 0; }
+
+.block {
+  margin-bottom: 2.4rem; }
+
+.chatter {
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  margin-bottom: 1.2rem; }
+
+p.source {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  margin-bottom: 0; }

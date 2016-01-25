@@ -10,6 +10,27 @@ $(document).ready(function() {
 
 	$('.copyright').text(year);
 
+
+
+
+	function drawChart(targetDiv, data) {
+
+		// var svg;
+
+		// if (targetDiv === chart1) {
+		// 	svg = d3.select("#chart1").append("svg");
+		// } else if (targetDiv === chart2) {
+		// 	svg = d3.select("#chart1").append("svg");
+		// }
+
+		var svg = d3.select("#" + targetDiv).append("svg");
+
+		svg.attr("width", 280)
+			.attr("height", 220)
+	}
+
+	drawChart("chart1", jobsReport);
+
 	/*
 	------------------------------------------------------------------------------------------
 	CODE FOR SLIDESHOWS, UN-COMMENT THE TWO LINES ABOVE AND BELOW THE CODE AS INSTRUCTED TO USE

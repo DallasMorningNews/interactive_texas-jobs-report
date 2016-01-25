@@ -96,7 +96,7 @@ googletag.enableServices();
 
 <section class="contentWell clearFix">
 
-	<div id="jobsReportContent">
+	<div id="jobsReportContent" class="clearFix">
 
 		<header id="storyHead">
 			<h3>Employment</h3>
@@ -116,32 +116,32 @@ googletag.enableServices();
 
 		<div class="leftWell">
 
-			<p>{{latestReport.intro}}</p>
+			<p class="intro">{{latestReport.intro}}</p>
 
 			<section id="blurbs">
 
 				<div class="blurb">
-					<h4>{{latestReport.blurb1_head}}</h4>
+					<h4><span class="number">1</span> {{latestReport.blurb1_head}}</h4>
 					<p>{{latestReport.blurb1}}</p>
 				</div>
 
 				{% if latestReport.blurb2 %}
 				<div class="blurb">
-					<h4>{{latestReport.blurb2_head}}</h4>
+					<h4><span class="number">2</span> {{latestReport.blurb2_head}}</h4>
 					<p>{{latestReport.blurb2}}</p>
 				</div>
 				{% endif %}
 
 				{% if latestReport.blurb3 %}
 				<div class="blurb">
-					<h4>{{latestReport.blurb3_head}}</h4>
+					<h4><span class="number">3</span> {{latestReport.blurb3_head}}</h4>
 					<p>{{latestReport.blurb3}}</p>
 				</div>
 				{% endif %}
 
 				{% if latestReport.blurb4 %}
 				<div class="blurb">
-					<h4>{{latestReport.blurb4_head}}</h4>
+					<h4><span class="number">4</span> {{latestReport.blurb4_head}}</h4>
 					<p>{{latestReport.blurb4}}</p>
 				</div>
 				{% endif %}
@@ -151,6 +151,71 @@ googletag.enableServices();
 
 		</div>
 		<!-- end leftWell -->
+
+		<div class="rightWell">
+
+
+			{% if latestReport.image %}
+				<div class="imageBlock">
+					<img src="{{latestReport.image|safe}}" alt="{{latestReport.image_cutline}}" />
+					<p class="cutline">{{latestReport.image_cutline}} ({{latestReport.image_credit}})</p>
+				</div>
+
+			{% endif %}
+
+
+			<div id="charts" class="clearFix">
+
+				<h5>{{latestReport.jobless_head}}</h5>
+				<p class="chatter">{{latestReport.jobless_chatter}}</p>
+
+				<div class="block clearFix">
+
+					<div id="chart1" class="chart">
+						<h6>Texas</h6>
+						<p class="chatter">(Seasonally adjusted)</p>
+					</div>
+
+					<div id="chart2" class="chart">
+						<h6>Dallas-Fort Worth area</h6>
+						<p class="chatter">(Not seasonally adjusted)</p>
+					</div>
+
+				</div>
+
+				<div class="block clearFix">
+
+					<div id="chart3" class="chart"> 
+						<h6>Texas jobs</h6>
+						<p class="chatter">{{latestReport.state_explainer}}</p>
+					</div>
+					<div id="chart4" class="chart">
+						<h6>Industry change</h6>
+						<p class="chatter">{{latestReport.industry_chatter}}</p>
+						<table>
+							<tr><th>Sector</th><th>Change</th></tr>
+							<tr><td>{{latestReport.cat1}}</td><td>{{latestReport.cat1_amount}}</td></tr>
+							{% if latestReport.cat2 %}<tr><td>{{latestReport.cat2}}</td><td>{{latestReport.cat2_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat3 %}<tr><td>{{latestReport.cat3}}</td><td>{{latestReport.cat3_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat4 %}<tr><td>{{latestReport.cat4}}</td><td>{{latestReport.cat4_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat5 %}<tr><td>{{latestReport.cat5}}</td><td>{{latestReport.cat5_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat6 %}<tr><td>{{latestReport.cat6}}</td><td>{{latestReport.cat6_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat7 %}<tr><td>{{latestReport.cat7}}</td><td>{{latestReport.cat7_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat8 %}<tr><td>{{latestReport.cat8}}</td><td>{{latestReport.cat8_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat9 %}<tr><td>{{latestReport.cat9}}</td><td>{{latestReport.cat9_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat10 %}<tr><td>{{latestReport.cat10}}</td><td>{{latestReport.cat10_amount}}</td></tr>{% endif %}
+							{% if latestReport.cat11 %}<tr><td>{{latestReport.cat11}}</td><td>{{latestReport.cat11_amount}}</td></tr>{% endif %}
+						</table>
+					</div>
+				</div>
+
+				<p class="source">Sources: {{latestReport.chart_source}}, Staff Graphic</p>
+
+			</div>
+			<!-- end charts -->
+
+		</div>
+		<!-- end rightWell -->
 
 	</div>
 	<!-- end jobsReportContent -->
@@ -207,12 +272,15 @@ googletag.enableServices();
 		 var jobsReport = [
 		 	{% for period in targetPeriod %}
 		 		{
+		 			"period": "{{period.month}} {{period.year}}",
 		 			"texas": {{period.texas_jobless_rate}},
 		 			"dfw": {{period.dfw_jobless_rate}},
 		 			"stateEmployment": {{period.state_employment}}
 		 		}{% if not loop.last %},{% endif %}
 		 	{% endfor %}
 		 ]
+
+		 console.log(jobsReport);
 	</script>
 {%endblock%}
 

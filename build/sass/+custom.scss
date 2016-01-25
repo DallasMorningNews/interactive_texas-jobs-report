@@ -9,3 +9,106 @@
 
 @import 'variables';
 @import 'mixins';
+
+$tableBar: #efebde;
+
+.shareCommentsTop {
+	margin: 3.6rem 0 !important;
+	ul {
+		text-align: left !important;
+	}
+}
+
+.leftWell {
+	width: calc(100% - 660px);
+	float: left;
+}
+
+.blurb {
+	margin-top: 2.4rem;
+	padding-bottom: 2.4rem;
+	border-bottom: 1px solid $black235;
+	&:last-of-type {
+		padding-bottom: 0;
+		border-bottom: 0;
+	}
+	h4, p {
+		font-family: $sans;
+	}
+	h4 {
+		margin-bottom: .6rem;
+		.number {
+			width: 3rem;
+			height: 3rem;
+			background-color: $black66;
+			color: white;
+			display: inline-block;
+			text-align: center;
+			border-radius: 50%;
+			@include type(2rem, 3rem, 0);
+		}
+	}
+	p {
+		@include type(1.4rem, 1.8rem, 0);
+	}
+}
+
+
+.rightWell {
+	width: 630px;
+	float: right;
+	padding-left: 30px;
+	border-left: 1px solid $black121;
+	font-family: $sans;
+	h5, h6 {
+		font-weight: bold;
+	}
+	table {
+		width: 100%;
+		@include type(1.3rem, 1.8rem, 0);
+		tr {
+			&:first-of-type {
+				border-bottom: 1px solid $black33;
+			}	
+			&:nth-of-type(even) {
+				background-color: $tableBar;
+			}
+		}
+		th {
+			font-weight: bold;
+			text-align: left;
+			&:last-of-type {
+				text-align: right;
+			}
+		}
+		td {
+			text-align: left;
+			&:last-of-type {
+				text-align: right;
+			}
+		}
+	}
+}
+
+.imageBlock {
+	margin-bottom: 2.4rem;
+}
+
+.chart {
+	width: 280px;
+	float: left;
+	margin-right: 20px;
+	&:last-of-type {
+		margin-right: 0;
+	}
+}
+
+.block {
+	margin-bottom: 2.4rem;
+}
+.chatter {
+	@include type(1.3rem, 1.8rem, 1.2rem);
+}
+p.source {
+	@include type(1.1rem, 1.5rem, 0);
+}

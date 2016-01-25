@@ -17,11 +17,7 @@ module.exports = function(app){
 			meta.targetPeriod = reports.slice(-13);
 
 			// set meta.latestReport to the most recent record in the reports array
-			meta.latestReport = reports[reports.length - 1]
-
-			// set meta.firstReport to the first record in the reports array.
-			// this should be the same month, one year previous of the last report
-			meta.firstReport = reports[0];
+			meta.latestReport = meta.targetPeriod[meta.targetPeriod.length - 1]
 
 			res.render("index.html", meta);
 
