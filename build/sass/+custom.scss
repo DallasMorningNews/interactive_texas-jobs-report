@@ -112,3 +112,26 @@ $tableBar: #efebde;
 p.source {
 	@include type(1.1rem, 1.5rem, 0);
 }
+
+rect {
+	cursor: pointer;
+}
+
+.bars {
+	position: relative;
+}
+
+.gridLine {
+	shape-rendering: crispEdges;
+}
+
+.valueLabel {
+	position: absolute;
+	background-color: white;
+	color: rgb(33,33,33);
+	padding: 3px;
+}
+
+.hidden {
+	display: none;
+}

@@ -83,3 +83,21 @@ p.source {
   font-size: 1.1rem;
   line-height: 1.5rem;
   margin-bottom: 0; }
+
+rect {
+  cursor: pointer; }
+
+.bars {
+  position: relative; }
+
+.gridLine {
+  shape-rendering: crispEdges; }
+
+.valueLabel {
+  position: absolute;
+  background-color: white;
+  color: #212121;
+  padding: 3px; }
+
+.hidden {
+  display: none; }

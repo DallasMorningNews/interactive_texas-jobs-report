@@ -13,23 +13,167 @@ $(document).ready(function() {
 
 
 
-	function drawChart(targetDiv, data) {
+	function drawChart(targetDiv, data, datapoint) {
 
-		// var svg;
+		// date parser
+		var parseDate = d3.time.format("%b %Y").parse;
 
-		// if (targetDiv === chart1) {
-		// 	svg = d3.select("#chart1").append("svg");
-		// } else if (targetDiv === chart2) {
-		// 	svg = d3.select("#chart1").append("svg");
-		// }
 
-		var svg = d3.select("#" + targetDiv).append("svg");
+		// creating our custom dataset based on the data and datapoint pased
+		dataset = data.map(function(d) {
+			console.log(d);
+			return {
+				month: parseDate(d.period),
+				value: d[datapoint]
+			}
+		})
 
-		svg.attr("width", 280)
-			.attr("height", 220)
+		console.log(dataset);
+
+		// setting up the chart dimensions and margins
+		var margin = {top: 5, right: 0, bottom: 30, left: 30},
+			w = 280 - margin.left - margin.right,
+			h = 220 - margin.top - margin.bottom;
+
+
+		// setting up the xScale. Ordinal for bar charts, based off the month property of the data
+		var xScale = d3.scale.ordinal()
+			.domain(dataset.map(function(d) {
+				return d.month
+			}))
+			.rangeRoundBands([0, w], 0.2);
+
+		// setting up the yScale. Min = 0. Max = 2 more than the max datapoint value
+		var yScale = d3.scale.linear()
+			.domain([0, d3.max(dataset, function(d) {
+				return (parseInt(d.value) + 2);
+			})])
+			.range([h, 0]);
+
+		// setting up the x axis. X Axis uses just the first letter of the month as its tick marker
+		var xAxis = d3.svg.axis()
+			.scale(xScale)
+			.orient("bottom")
+			.outerTickSize(0)
+			.tickFormat(function(d) {
+				return d3.time.format("%b")(d).charAt(0)
+			});
+
+		// setting up the right axis. ticks represent datapoint value as a percentage
+		var yAxis = d3.svg.axis()
+			.scale(yScale)
+			.orient("right")
+			.innerTickSize(- (w + margin.left))
+			.outerTickSize(0)
+			.tickPadding(10)
+			.ticks(3)
+			.tickFormat(function(d) {
+				return d + "%";
+			});
+
+		// setting up a secondary x axis that marks the years under "januarys", using only the last two digits of the year
+		var secondaryAxis = d3.svg.axis()
+			.scale(xScale)
+			.orient("bottom")
+			.outerTickSize(0)
+			.tickFormat(function(d) {
+				if (d3.time.format("%b")(d) === "Jan") {
+					return ("’" + d3.time.format("%Y")(d).slice(-2))
+				}
+			})
+
+
+		// appending an svg element to the targetDiv passed to the drawChart function
+		var svg = d3.select("#" + targetDiv)
+			.append("svg")
+				.attr("width", w + margin.left + margin.right)
+				.attr("height", h + margin.top + margin.bottom);
+
+		// appending a g element for the yAxis
+		svg.append("g")
+			.attr("class", "axis yAxis")
+			.attr("transform", "translate(0, 5)")
+			.call(yAxis);
+
+		// appending horizontal grid lines
+		var gridLines = d3.selectAll(".yAxis .tick")
+			.append("line")
+			.classed("gridLine", true)
+			.attr("x1", margin.left)
+			.attr("y1", 0)
+			.attr("x2", w + margin.left)
+			.attr("y2", 0)
+			.attr("stroke-width", 1)
+			.attr("stroke", "rgb(225,225,225");
+
+
+		// appending a g element for the bars, and positioning with the left and top margins
+		var bars = d3.select("#" + targetDiv + " svg")				
+				.append("g")
+					.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");				
+
+		// adding rectangles to the bars g element
+		// also adds a mouseover event that displays the value and highlights the bar
+		bars.selectAll("rect")
+			.data(dataset)
+			.enter()
+			.append("rect")
+				.attr("x", function(d) {
+					return xScale(d.month);
+				})
+				.attr("y", function(d) {
+					return yScale(d.value);
+				})
+				.attr("width", xScale.rangeBand())
+				.attr("height", function(d) {
+					return h-yScale(d.value);
+				})
+				.attr("fill", "#0185d3")
+				.on("mouseover", function(d) {
+					var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2 + margin.left;
+					var yPosition = parseFloat(d3.select(this).attr("y")) - 2;
+
+					d3.select(this).attr("fill", "#01456e");
+
+					svg.append("text")
+						.classed("valueLabel", true)
+						.attr({
+							"x": xPosition,
+							"y": yPosition,
+							"text-anchor": "middle",
+							"fill": "rgb(33,33,33)",
+							"font-weight": "bold",
+							"letter-spacing": "-.5",
+							"font-size": "11px"
+						})
+						.text(d.value);
+				})
+				.on("mouseout", function() {
+					d3.select(".valueLabel").remove();
+					d3.select(this).attr("fill", "#0185d3");
+				})
+
+
+
+		// appending the g element for the x axis
+		svg.append("g")
+			.attr("class", "axis xAxis")
+			.attr("transform", "translate(" + margin.left + ", " + h + ")")
+			.call(xAxis);
+
+		// appending the g element for the secondary x axis (the year markers)
+		svg.append("g")
+			.attr("class", "axis yearAxis")
+			.attr("transform", "translate(" + margin.left + ", " + (h + margin.bottom - 15) + ")")
+			.call(secondaryAxis);
+
+		
+
 	}
 
-	drawChart("chart1", jobsReport);
+	drawChart("chart1", jobsReport, "texas");
+	drawChart("chart2", jobsReport, "dfw");
+	// drawChart("chart3", jobsReport, "stateEmployment");
 
 	/*
 	------------------------------------------------------------------------------------------
