@@ -932,7 +932,8 @@ XX. ADS
 .chart {
   width: 280px;
   float: left;
-  margin-right: 20px; }
+  margin-right: 20px;
+  position: relative; }
   .chart:last-of-type {
     margin-right: 0; }
 
@@ -957,12 +958,6 @@ rect {
 
 .gridLine {
   shape-rendering: crispEdges; }
-
-.valueLabel {
-  position: absolute;
-  background-color: white;
-  color: #212121;
-  padding: 3px; }
 
 .hidden {
   display: none; }

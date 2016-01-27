@@ -18,6 +18,7 @@ $(document).ready(function() {
 		// date parser
 		var parseDate = d3.time.format("%b %Y").parse;
 
+		console.log(datapoint);
 
 		// creating our custom dataset based on the data and datapoint pased
 		dataset = data.map(function(d) {
@@ -35,6 +36,10 @@ $(document).ready(function() {
 			w = 280 - margin.left - margin.right,
 			h = 220 - margin.top - margin.bottom;
 
+		if (datapoint === "stateEmployment") {
+			margin.left = 50;
+			w = 280 - margin.left - margin.right;
+		}
 
 		// setting up the xScale. Ordinal for bar charts, based off the month property of the data
 		var xScale = d3.scale.ordinal()
@@ -43,12 +48,30 @@ $(document).ready(function() {
 			}))
 			.rangeRoundBands([0, w], 0.2);
 
+
 		// setting up the yScale. Min = 0. Max = 2 more than the max datapoint value
+		
 		var yScale = d3.scale.linear()
-			.domain([0, d3.max(dataset, function(d) {
-				return (parseInt(d.value) + 2);
-			})])
 			.range([h, 0]);
+
+		if (datapoint === "stateEmployment") {
+
+			yScale.domain(
+				[d3.min(dataset, function(d) {
+					return (parseInt(d.value) - 5000)
+				}), 
+				d3.max(dataset, function(d)  {
+					return (parseInt(d.value) + 5000)
+				})]); 
+
+			// yScale.domain(d3.extent(dataset, function(d){
+			// 	return (parseInt(d.value) + 5000);
+			// }))
+		} else {
+			yScale.domain([0, d3.max(dataset, function(d) {
+					return (parseInt(d.value) + 2);
+				})]);
+		}
 
 		// setting up the x axis. X Axis uses just the first letter of the month as its tick marker
 		var xAxis = d3.svg.axis()
@@ -60,16 +83,26 @@ $(document).ready(function() {
 			});
 
 		// setting up the right axis. ticks represent datapoint value as a percentage
+		
 		var yAxis = d3.svg.axis()
 			.scale(yScale)
-			.orient("right")
 			.innerTickSize(- (w + margin.left))
 			.outerTickSize(0)
-			.tickPadding(10)
-			.ticks(3)
-			.tickFormat(function(d) {
-				return d + "%";
-			});
+			.tickPadding(10);			
+
+		if (datapoint === "stateEmployment") {
+			yAxis.ticks(10)
+				.tickFormat(function(d) {
+					return commafy(d);
+				})
+				.orient("left")
+		} else {
+			yAxis.ticks(3)
+				.tickFormat(function(d) {
+					return d + "%";
+				})
+				.orient("right");
+		}
 
 		// setting up a secondary x axis that marks the years under "januarys", using only the last two digits of the year
 		var secondaryAxis = d3.svg.axis()
@@ -89,10 +122,11 @@ $(document).ready(function() {
 				.attr("width", w + margin.left + margin.right)
 				.attr("height", h + margin.top + margin.bottom);
 
+	
 		// appending a g element for the yAxis
 		svg.append("g")
 			.attr("class", "axis yAxis")
-			.attr("transform", "translate(0, 5)")
+			.attr("transform", "translate(0,5)")
 			.call(yAxis);
 
 		// appending horizontal grid lines
@@ -106,6 +140,16 @@ $(document).ready(function() {
 			.attr("stroke-width", 1)
 			.attr("stroke", "rgb(225,225,225");
 
+
+		//reseting the position of the y-Axis and gridlines for the texas jobs chart to account for larger numbers in the chart's y-axis
+
+		if (datapoint === "stateEmployment") {
+			d3.select("#" + targetDiv + " .yAxis")
+				.attr("transform", "translate(50,5)");
+
+			d3.selectAll("#" + targetDiv + " .yAxis .tick .gridLine")
+				.attr("x1", "0");
+		}
 
 		// appending a g element for the bars, and positioning with the left and top margins
 		var bars = d3.select("#" + targetDiv + " svg")				
@@ -122,11 +166,11 @@ $(document).ready(function() {
 					return xScale(d.month);
 				})
 				.attr("y", function(d) {
-					return yScale(d.value);
+					return yScale(Math.max(0, d.value));
 				})
 				.attr("width", xScale.rangeBand())
-				.attr("height", function(d) {
-					return h-yScale(d.value);
+				.attr("height", function(d) { 
+					return Math.abs(yScale(d.value) - yScale(0)); 
 				})
 				.attr("fill", "#0185d3")
 				.on("mouseover", function(d) {
@@ -135,24 +179,59 @@ $(document).ready(function() {
 
 					d3.select(this).attr("fill", "#01456e");
 
-					svg.append("text")
-						.classed("valueLabel", true)
-						.attr({
-							"x": xPosition,
-							"y": yPosition,
-							"text-anchor": "middle",
-							"fill": "rgb(33,33,33)",
-							"font-weight": "bold",
-							"letter-spacing": "-.5",
-							"font-size": "11px"
-						})
-						.text(d.value);
+					d3.select("#" + targetDiv + " .toolTip")
+						.attr("transform", "translate(" + xPosition + ", " + yPosition + ")")
+						.classed("hidden", false);
+
+
+					if (datapoint === "stateEmployment") {
+						d3.select("#" + targetDiv + " .toolTip")
+							.select("text")
+								.text(commafy(d.value));
+					} else {
+						d3.select("#" + targetDiv + " .toolTip")
+							.select("text")
+								.text(d.value + "%");
+					}
+
+
+					// svg.append("text")
+					// 	.classed("valueLabel", true)
+					// 	.attr({
+					// 		"x": xPosition,
+					// 		"y": yPosition,
+					// 		"text-anchor": "middle",
+					// 		"fill": "rgb(33,33,33)",
+					// 		"font-weight": "bold",
+					// 		"letter-spacing": "-.5",
+					// 		"font-size": "11px"
+					// 	})
+					// 	.text(d.value);
 				})
 				.on("mouseout", function() {
 					d3.select(".valueLabel").remove();
 					d3.select(this).attr("fill", "#0185d3");
 				})
 
+
+		var tooltip = svg.append("g")
+			.attr("class", "hidden toolTip");
+
+		tooltip.append("rect")
+			.attr("fill", "white")
+			.attr("height", 30)
+			.attr("x", 0)
+			.attr("y", 0);
+
+		if (datapoint === "stateEmployment") {
+			tooltip.selectAll("rect").attr("width", 70)
+		} else {
+			tooltip.selectAll("rect").attr("width", 30)
+		}
+
+		tooltip.append("text")
+			.attr("x", 0)
+			.attr("y", 10);
 
 
 		// appending the g element for the x axis
@@ -166,14 +245,15 @@ $(document).ready(function() {
 			.attr("class", "axis yearAxis")
 			.attr("transform", "translate(" + margin.left + ", " + (h + margin.bottom - 15) + ")")
 			.call(secondaryAxis);
-
-		
-
+	
 	}
+
+	var commafy = d3.format(",")
+
 
 	drawChart("chart1", jobsReport, "texas");
 	drawChart("chart2", jobsReport, "dfw");
-	// drawChart("chart3", jobsReport, "stateEmployment");
+	drawChart("chart3", jobsReport, "stateEmployment");
 
 	/*
 	------------------------------------------------------------------------------------------

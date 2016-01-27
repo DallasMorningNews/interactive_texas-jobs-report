@@ -98,6 +98,7 @@ $tableBar: #efebde;
 	width: 280px;
 	float: left;
 	margin-right: 20px;
+	position: relative;
 	&:last-of-type {
 		margin-right: 0;
 	}
@@ -123,13 +124,6 @@ rect {
 
 .gridLine {
 	shape-rendering: crispEdges;
-}
-
-.valueLabel {
-	position: absolute;
-	background-color: white;
-	color: rgb(33,33,33);
-	padding: 3px;
 }
 
 .hidden {
