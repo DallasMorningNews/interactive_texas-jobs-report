@@ -279,6 +279,45 @@ $(document).ready(function() {
 	drawChart("chart2", jobsReport, "dfw");
 	drawChart("chart3", jobsReport, "stateEmployment");
 
+
+	var currentCard = 0;
+	var totalCards = $('#blurbNav ul li').length - 1;
+
+	console.log(totalCards);
+
+	function swapCard(cardNumber) {
+		$('.blurb').addClass('hidden');
+		$('.blurb').eq(cardNumber).removeClass('hidden');
+	}
+
+	$('#blurbNav ul li').click(function() {
+
+		clearInterval(blurbTimer)
+
+		$('#blurbNav ul li').removeClass('activeBlurb');
+		$(this).addClass('activeBlurb');
+
+		var i = $(this).index();
+		swapCard(i);
+	})
+
+	var blurbTimer = setInterval(function() {
+		if (currentCard < totalCards) {
+			currentCard++;
+		} else {
+			currentCard = 0;
+		}
+
+		swapCard(currentCard);
+		$('#blurbNav ul li').removeClass('activeBlurb');
+		$("#blurbNav ul li").eq(currentCard).addClass('activeBlurb');
+	}, 5000)
+
+	
+
+	blurbTimer;	
+
+
 	/*
 	------------------------------------------------------------------------------------------
 	CODE FOR SLIDESHOWS, UN-COMMENT THE TWO LINES ABOVE AND BELOW THE CODE AS INSTRUCTED TO USE

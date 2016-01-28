@@ -4,6 +4,9 @@ var express = require('express'),
     http = require('http'),
     orm = require('orm');
 
+
+
+
 /*-------------------------------------------------------
     APP
 -------------------------------------------------------*/
@@ -12,6 +15,24 @@ var app = express();
 
 // Meta data
 var meta = require('./meta.json');
+
+
+var nenv = nunjucks.configure('templates', {
+    autoescape: true,
+    express: app,
+    watch: true
+});
+
+nenv.addFilter('cleantext', function(str) {
+    return str
+        .replace(/"(?=\w)/g, "“")
+        .replace(/"/g, "”")
+        .replace(/\s'/g, " ‘")
+        // .replace(/\s'(?=\w|$)/g, "‘")
+        .replace(/'/g, "’")
+        .replace(/\w'\w/g,"’")
+        .replace(/--/g, "—")
+    })
 
 
 /*-------------------------------------------------------
@@ -69,11 +90,7 @@ app.use('/texas-jobs-report', express.static('public'));
     TEMPLATES
 -------------------------------------------------------*/
 
-var nenv = nunjucks.configure('templates', {
-    autoescape: true,
-    express: app,
-    watch: true
-});
+
 
 
 /*-------------------------------------------------------

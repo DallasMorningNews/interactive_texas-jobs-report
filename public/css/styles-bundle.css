@@ -292,8 +292,7 @@ VI. STORY HEAD, BYLINES AND INTRO
 */
 #storyHead {
   margin: 4.8rem auto 2.4rem auto;
-  color: #212121;
-  font-family: 'Open Sans', Arial, sans-serif; }
+  color: #212121; }
 
 #storyHead h1 {
   font-size: 5rem;
@@ -327,8 +326,8 @@ VI. STORY HEAD, BYLINES AND INTRO
   margin-right: 0; }
 
 p.intro {
-  font-size: 1.6rem;
-  line-height: 2.4rem;
+  font-size: 1.8rem;
+  line-height: 3rem;
   margin-bottom: 2.4rem; }
 
 .dropcap {
@@ -863,28 +862,46 @@ XX. ADS
   font-weight: bold;
   margin-bottom: .5rem !important; }
 
-#storyHead h3 {
-  padding-left: 5px;
-  margin-left: 40px;
-  background-color: #212121;
-  display: inline-block;
-  color: white;
+.headerImage {
+  position: relative;
+  margin-bottom: 4.8rem; }
+  .headerImage .cutline {
+    background-color: rgba(15, 15, 15, 0.8);
+    color: white;
+    position: absolute;
+    bottom: 0;
+    padding: 10px; }
+  .headerImage img {
+    margin-bottom: 0; }
+
+#storyHead {
   font-family: "Open Sans", Arial, sans-serif;
-  padding: 0 10px;
-  height: 30px;
-  margin-top: 12px; }
-  #storyHead h3:before {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 60px;
-    position: relative;
-    float: left;
-    background-image: url("../images/_jobsIcon.svg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    margin-left: -51px;
-    margin-top: -12px; }
+  margin-top: 0; }
+  #storyHead h3 {
+    padding-left: 5px;
+    margin-left: 40px;
+    background-color: #212121;
+    display: inline-block;
+    color: white;
+    font-family: Oswald, Arial, sans-serif;
+    padding: 0 10px;
+    height: 30px;
+    margin-top: 12px;
+    position: absolute;
+    top: 10px;
+    left: 10px; }
+    #storyHead h3:before {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 60px;
+      position: relative;
+      float: left;
+      background-image: url("../images/_jobsIcon.svg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      margin-left: -51px;
+      margin-top: -12px; }
 
 .shareCommentsTop {
   margin: 3.6rem 0 !important; }
@@ -892,41 +909,80 @@ XX. ADS
     text-align: left !important; }
 
 .leftWell {
-  width: calc(100% - 660px);
-  float: left; }
+  width: calc(100% - 310px);
+  float: left;
+  border-right: 1px solid #797979;
+  padding-right: 30px;
+  margin-top: 4.8rem; }
 
-.blurb {
+p.intro {
+  margin-bottom: 4.8rem; }
+
+#blurbNav {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+
+#blurbNav ul li {
+  display: inline-block;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  margin-bottom: 0;
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid #0185d3;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 5px;
+  transition: all .1s ease-out;
+  cursor: pointer; }
+  #blurbNav ul li:last-of-type {
+    margin-right: 0; }
+  #blurbNav ul li.activeBlurb {
+    background-color: #0185d3;
+    color: white; }
+  #blurbNav ul li:hover {
+    background-color: #0185d3;
+    color: white; }
+
+#blurbs {
   margin-top: 2.4rem;
-  padding-bottom: 2.4rem;
-  border-bottom: 1px solid #ebebeb; }
-  .blurb:last-of-type {
-    padding-bottom: 0;
-    border-bottom: 0; }
-  .blurb h4, .blurb p {
+  padding: 60px 60px 60px 100px;
+  background-color: whitesmoke;
+  position: relative;
+  border: 5px solid #212121; }
+  #blurbs h4, #blurbs p {
     font-family: "Open Sans", Arial, sans-serif; }
-  .blurb h4 {
-    margin-bottom: .6rem; }
-    .blurb h4 .number {
-      width: 3rem;
-      height: 3rem;
-      background-color: #424242;
+  #blurbs h4 {
+    margin-bottom: .6rem;
+    font-family: Oswald, Arial, sans-serif; }
+    #blurbs h4 .number {
+      width: 10rem;
+      height: 10rem;
+      background-color: #212121;
       color: white;
       display: inline-block;
-      text-align: center;
+      text-align: right;
+      padding-right: 2rem;
       border-radius: 50%;
-      font-size: 2rem;
-      line-height: 3rem;
-      margin-bottom: 0; }
-  .blurb p {
-    font-size: 1.4rem;
-    line-height: 1.8rem;
+      font-size: 4rem;
+      line-height: 10rem;
+      margin-bottom: 0;
+      position: absolute;
+      left: -5rem;
+      top: 50%;
+      margin-top: -5rem; }
+  #blurbs p {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     margin-bottom: 0; }
 
 .rightWell {
-  width: 630px;
+  width: 290px;
   float: right;
-  padding-left: 30px;
-  border-left: 1px solid #797979;
+  padding: 0 0 0 0px;
+  margin: 4.8rem 0 0 0;
   font-family: "Open Sans", Arial, sans-serif; }
   .rightWell h5, .rightWell h6 {
     font-weight: bold; }
@@ -955,7 +1011,6 @@ XX. ADS
 .chart {
   width: 280px;
   float: left;
-  margin-right: 20px;
   position: relative; }
   .chart:last-of-type {
     margin-right: 0; }

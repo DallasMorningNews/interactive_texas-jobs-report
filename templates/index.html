@@ -98,51 +98,72 @@ googletag.enableServices();
 
 	<div id="jobsReportContent" class="clearFix">
 
-		<header id="storyHead" class="clearFix">
-			<h3>Texas Monthly Jobs Report: {{latestReport.month}} {{latestReport.year}}</h3>
-			<h1>{{latestReport.main_headline}}</h1>
-			<h2>{{latestReport.main_deck}}</h2>
-		</header>
-
-		<div class="bylineBlock">
-			<p>By <a target="_blank" href="mailto:{{latestReport.email}}">{{latestReport.byline}}</a> | {{latestReport.title}} | {% if latestReport.twitter %}<a href="http://www.twitter.com/{{latestReport.twitter}}"><i class="fa fa-twitter"></i> @{{latestReport.twitter}}</a> {% endif %} </p>
-		</div>
-
-		<div class="shareComments shareCommentsTop">	
-			<ul id="share-bar1" class="width-auto-hack"></ul>
-		</div>        		
-		<!-- end shareComments -->
-
 
 		<div class="leftWell">
 
-			<p class="intro">{{latestReport.intro}}</p>
+			<header id="storyHead" class="clearFix">
+				<div class="headerImage">
+					<h3>Texas Monthly Jobs Report: {{latestReport.month}} {{latestReport.year}}</h3>
+
+					{% if latestReport.image %}
+						<div class="imageBlock">
+							<img src="{{latestReport.image|safe}}" alt="{{latestReport.image_cutline | cleantext}}" />
+							<p class="cutline">{{latestReport.image_cutline | cleantext}} ({{latestReport.image_credit}})</p>
+						</div>
+					{% endif %}
+
+				</div>
+
+				<h1>{{latestReport.main_headline | cleantext}}</h1>
+				<h2>{{latestReport.main_deck | cleantext}}</h2>
+
+			</header>
+
+			<div class="bylineBlock">
+				<p>By <a target="_blank" href="mailto:{{latestReport.email}}">{{latestReport.byline}}</a> | {{latestReport.title}} | {% if latestReport.twitter %}<a href="http://www.twitter.com/{{latestReport.twitter}}"><i class="fa fa-twitter"></i> @{{latestReport.twitter}}</a> {% endif %} </p>
+			</div>
+
+			<div class="shareComments shareCommentsTop">	
+				<ul id="share-bar1" class="width-auto-hack"></ul>
+			</div>        		
+			<!-- end shareComments -->
+
+			<p class="intro">{{latestReport.intro | cleantext}} </p>
 
 			<section id="blurbs">
 
+				<nav id="blurbNav">
+					<ul>
+						<li class="activeBlurb">1</li>
+						{% if latestReport.blurb2 %}<li>2</li> {% endif %}
+						{% if latestReport.blurb3 %}<li>3</li> {% endif %}
+						{% if latestReport.blurb4 %}<li>4</li> {% endif %}
+					</ul>
+				</nav>
+
 				<div class="blurb">
-					<h4><span class="number">1</span> {{latestReport.blurb1_head}}</h4>
-					<p>{{latestReport.blurb1}}</p>
+					<h4><span class="number">1</span> {{latestReport.blurb1_head | cleantext}}</h4>
+					<p>{{latestReport.blurb1 | cleantext}}</p>
 				</div>
 
 				{% if latestReport.blurb2 %}
-				<div class="blurb">
-					<h4><span class="number">2</span> {{latestReport.blurb2_head}}</h4>
-					<p>{{latestReport.blurb2}}</p>
+				<div class="blurb hidden">
+					<h4><span class="number">2</span> {{latestReport.blurb2_head |cleantext}}</h4>
+					<p>{{latestReport.blurb2 | cleantext}}</p>
 				</div>
 				{% endif %}
 
 				{% if latestReport.blurb3 %}
-				<div class="blurb">
-					<h4><span class="number">3</span> {{latestReport.blurb3_head}}</h4>
-					<p>{{latestReport.blurb3}}</p>
+				<div class="blurb hidden">
+					<h4><span class="number">3</span> {{latestReport.blurb3_head | cleantext}}</h4>
+					<p>{{latestReport.blurb3 | cleantext}}</p>
 				</div>
 				{% endif %}
 
 				{% if latestReport.blurb4 %}
-				<div class="blurb">
-					<h4><span class="number">4</span> {{latestReport.blurb4_head}}</h4>
-					<p>{{latestReport.blurb4}}</p>
+				<div class="blurb hidden">
+					<h4><span class="number">4</span> {{latestReport.blurb4_head | cleantext}}</h4>
+					<p>{{latestReport.blurb4 | cleantext}}</p>
 				</div>
 				{% endif %}
 
@@ -155,19 +176,10 @@ googletag.enableServices();
 		<div class="rightWell">
 
 
-			{% if latestReport.image %}
-				<div class="imageBlock">
-					<img src="{{latestReport.image|safe}}" alt="{{latestReport.image_cutline}}" />
-					<p class="cutline">{{latestReport.image_cutline}} ({{latestReport.image_credit}})</p>
-				</div>
-
-			{% endif %}
-
-
 			<div id="charts" class="clearFix">
 
 				<h5>{{latestReport.jobless_head}}</h5>
-				<p class="chatter">{{latestReport.jobless_chatter}}</p>
+				<p class="chatter">{{latestReport.jobless_chatter | cleantext}} (Touch the bars to see individual values)</p>
 
 				<div class="block clearFix">
 
@@ -187,11 +199,11 @@ googletag.enableServices();
 
 					<div id="chart3" class="chart"> 
 						<h6>Texas jobs</h6>
-						<p class="chatter">{{latestReport.state_explainer}}</p>
+						<p class="chatter">{{latestReport.state_explainer | cleantext}}</p>
 					</div>
 					<div id="chart4" class="chart">
 						<h6>Industry change</h6>
-						<p class="chatter">{{latestReport.industry_chatter}}</p>
+						<p class="chatter">{{latestReport.industry_chatter | cleantext}}</p>
 						<table>
 							<tr><th>Sector</th><th>Change</th></tr>
 							<tr><td>{{latestReport.cat1}}</td><td>{{latestReport.cat1_amount}}</td></tr>
