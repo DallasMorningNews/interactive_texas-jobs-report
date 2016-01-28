@@ -172,7 +172,13 @@ $(document).ready(function() {
 				.attr("height", function(d) { 
 					return Math.abs(yScale(d.value) - yScale(0)); 
 				})
-				.attr("fill", "#0185d3")
+				.attr("fill", function(d) {
+					if (d.value < 0) {
+						return "#c80000";
+					} else {
+						return "#0185d3";
+					}
+				})
 				.on("mouseover", function(d) {
 
 					// grabbing the x position of the bar mousedover
@@ -189,7 +195,13 @@ $(document).ready(function() {
 
 					var yPosition = parseFloat(d3.select(this).attr("y")) + 3;
 
-					d3.select(this).attr("fill", "#01456e");
+					d3.select(this).attr("fill", function(d) {
+						if (d.value < 0) {
+							return "#950000";
+						} else {
+							return "#01456e";
+						}
+					});
 
 					d3.select("#" + targetDiv + " .toolTip")
 						.attr("transform", "translate(" + xPosition + ", " + yPosition + ")")
@@ -211,7 +223,13 @@ $(document).ready(function() {
 				.on("mouseout", function() {
 					d3.select("#" + targetDiv + " .toolTip")
 						.classed("hidden", true);
-					d3.select(this).attr("fill", "#0185d3");
+					d3.select(this).attr("fill", function(d) {
+						if (d.value < 0) {
+							return "#c80000";
+						} else {
+							return "#0185d3";
+						}
+					})
 				});
 
 

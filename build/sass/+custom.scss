@@ -12,6 +12,30 @@
 
 $tableBar: #efebde;
 
+$custom: Oswald, Arial, sans-serif;
+
+
+#storyHead h3 {
+	&:before {
+		@include psuedoElement(60px, 60px);
+		float: left;
+		background-image: url('../images/_jobsIcon.svg');
+		background-size: 100%;
+		background-repeat: no-repeat;
+		margin-left: -51px;
+		margin-top: -12px;
+	}
+	padding-left: 5px;
+	margin-left: 40px;
+	background-color: $black33;
+	display: inline-block;
+	color: white;
+	font-family: $sans;
+	padding: 0 10px;
+	height: 30px;
+	margin-top: 12px;
+}
+
 .shareCommentsTop {
 	margin: 3.6rem 0 !important;
 	ul {

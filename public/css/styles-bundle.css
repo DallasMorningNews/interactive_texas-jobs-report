@@ -307,7 +307,7 @@ VI. STORY HEAD, BYLINES AND INTRO
 
 #storyHead h3 {
   font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   line-height: 3rem;
   margin-bottom: 1.8rem;
   text-transform: uppercase; }
@@ -862,6 +862,29 @@ XX. ADS
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: .5rem !important; }
+
+#storyHead h3 {
+  padding-left: 5px;
+  margin-left: 40px;
+  background-color: #212121;
+  display: inline-block;
+  color: white;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding: 0 10px;
+  height: 30px;
+  margin-top: 12px; }
+  #storyHead h3:before {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    float: left;
+    background-image: url("../images/_jobsIcon.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-left: -51px;
+    margin-top: -12px; }
 
 .shareCommentsTop {
   margin: 3.6rem 0 !important; }
