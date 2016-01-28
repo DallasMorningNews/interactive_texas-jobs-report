@@ -94,5 +94,13 @@ rect {
 .gridLine {
   shape-rendering: crispEdges; }
 
+.toolTip {
+  pointer-events: none; }
+
+.toolTip text {
+  font-size: 11px;
+  font-weight: bold;
+  font-family: "Open Sans", Arial, sans-serif; }
+
 .hidden {
   display: none; }

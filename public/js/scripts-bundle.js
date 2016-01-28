@@ -91,11 +91,11 @@ $(document).ready(function() {
 			.tickPadding(10);			
 
 		if (datapoint === "stateEmployment") {
-			yAxis.ticks(10)
+			yAxis.ticks(6)
 				.tickFormat(function(d) {
 					return commafy(d);
 				})
-				.orient("left")
+				.orient("left");
 		} else {
 			yAxis.ticks(3)
 				.tickFormat(function(d) {
@@ -111,9 +111,9 @@ $(document).ready(function() {
 			.outerTickSize(0)
 			.tickFormat(function(d) {
 				if (d3.time.format("%b")(d) === "Jan") {
-					return ("’" + d3.time.format("%Y")(d).slice(-2))
+					return ("’" + d3.time.format("%Y")(d).slice(-2));
 				}
-			})
+			});
 
 
 		// appending an svg element to the targetDiv passed to the drawChart function
@@ -138,7 +138,7 @@ $(document).ready(function() {
 			.attr("x2", w + margin.left)
 			.attr("y2", 0)
 			.attr("stroke-width", 1)
-			.attr("stroke", "rgb(225,225,225");
+			.attr("stroke", "rgb(225,225,225)");
 
 
 		//reseting the position of the y-Axis and gridlines for the texas jobs chart to account for larger numbers in the chart's y-axis
@@ -174,8 +174,20 @@ $(document).ready(function() {
 				})
 				.attr("fill", "#0185d3")
 				.on("mouseover", function(d) {
-					var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2 + margin.left;
-					var yPosition = parseFloat(d3.select(this).attr("y")) - 2;
+
+					// grabbing the x position of the bar mousedover
+					var xPosition = parseFloat(d3.select(this).attr("x"));
+
+					// if that x position is more than half the width of the svg
+					// set the x position so that the tooltip appears to the left of the bar
+					// else, set the x position to the right of the bar
+					if (xPosition > w / 2) {
+						xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2 + margin.left - tooltipWidth;
+					} else {
+						xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2 + margin.left;
+					}
+
+					var yPosition = parseFloat(d3.select(this).attr("y")) + 3;
 
 					d3.select(this).attr("fill", "#01456e");
 
@@ -195,44 +207,38 @@ $(document).ready(function() {
 					}
 
 
-					// svg.append("text")
-					// 	.classed("valueLabel", true)
-					// 	.attr({
-					// 		"x": xPosition,
-					// 		"y": yPosition,
-					// 		"text-anchor": "middle",
-					// 		"fill": "rgb(33,33,33)",
-					// 		"font-weight": "bold",
-					// 		"letter-spacing": "-.5",
-					// 		"font-size": "11px"
-					// 	})
-					// 	.text(d.value);
 				})
 				.on("mouseout", function() {
-					d3.select(".valueLabel").remove();
+					d3.select("#" + targetDiv + " .toolTip")
+						.classed("hidden", true);
 					d3.select(this).attr("fill", "#0185d3");
-				})
+				});
 
+
+		var tooltipWidth;
+
+		if (datapoint === "stateEmployment") {
+			tooltipWidth = 50;
+		} else {
+			tooltipWidth = 40;
+		}
 
 		var tooltip = svg.append("g")
 			.attr("class", "hidden toolTip");
 
 		tooltip.append("rect")
 			.attr("fill", "white")
-			.attr("height", 30)
+			.attr("height", 20)
+			.attr("width", tooltipWidth)
+			.attr("stroke-width", 1)
+			.attr("stroke", "rgb(121,121,121)")
 			.attr("x", 0)
 			.attr("y", 0);
 
-		if (datapoint === "stateEmployment") {
-			tooltip.selectAll("rect").attr("width", 70)
-		} else {
-			tooltip.selectAll("rect").attr("width", 30)
-		}
-
 		tooltip.append("text")
-			.attr("x", 0)
-			.attr("y", 10);
-
+			.attr("y", 14)
+			.attr("x", tooltipWidth / 2)
+			.attr("text-anchor", "middle");
 
 		// appending the g element for the x axis
 		svg.append("g")
