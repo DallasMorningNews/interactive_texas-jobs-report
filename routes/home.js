@@ -13,6 +13,9 @@ module.exports = function(app){
 		// then pass the resulting records as "reports" to a function. "reports" is an array
 		req.models.texas_jobs.find({}, "date").run(function(err, reports){
 
+			// sets meta.lastPeriod = to the most recent report in the database
+			meta.lastReport = reports[reports.length-1]; 
+
 			//set meta.targetPeriod = to the last 13 records in the returned "reports" array
 			meta.targetPeriod = reports.slice(-13);
 

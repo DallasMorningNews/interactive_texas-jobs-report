@@ -56,8 +56,20 @@ p.intro {
 
 #blurbNav {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 10px; }
+  #blurbNav ul, #blurbNav span {
+    float: left; }
+  #blurbNav ul {
+    margin-right: 10px; }
+  #blurbNav span {
+    font-family: Oswald, Arial, sans-serif;
+    font-size: 1.4rem;
+    line-height: 3rem;
+    margin-bottom: 0;
+    color: #0185d3;
+    text-transform: uppercase;
+    cursor: pointer; }
 
 #blurbNav ul li {
   display: inline-block;
@@ -85,9 +97,8 @@ p.intro {
 #blurbs {
   margin-top: 2.4rem;
   padding: 60px 60px 60px 100px;
-  background-color: whitesmoke;
-  position: relative;
-  border: 5px solid #212121; }
+  background-color: #f0f0f0;
+  position: relative; }
   #blurbs h4, #blurbs p {
     font-family: "Open Sans", Arial, sans-serif; }
   #blurbs h4 {
@@ -113,6 +124,9 @@ p.intro {
     font-size: 1.6rem;
     line-height: 2.4rem;
     margin-bottom: 0; }
+
+.blurb {
+  margin-bottom: 1.2rem; }
 
 .rightWell {
   width: 290px;
@@ -182,4 +196,4 @@ rect {
   font-family: "Open Sans", Arial, sans-serif; }
 
 .hidden {
-  display: none; }
+  display: none !important; }

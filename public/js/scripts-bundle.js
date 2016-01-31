@@ -280,27 +280,58 @@ $(document).ready(function() {
 	drawChart("chart3", jobsReport, "stateEmployment");
 
 
-	var currentCard = 0;
-	var totalCards = $('#blurbNav ul li').length - 1;
 
-	console.log(totalCards);
+	//////////////////////////////////////////////////////
+	///// BLURB CARDS ////////////////////////////////////
+	//////////////////////////////////////////////////////
 
+
+	var currentCard = 0; // card we are currently on. defaults to 0, based on 0-index array of li items
+
+	// find out how many cards we have, based on how many li items are in the nav
+	// li items are dynamically build based on what's returned from the database
+	var totalCards = $('#blurbNav ul li').length - 1; 
+
+
+	// changing which blurb card is currently being viewed
 	function swapCard(cardNumber) {
 		$('.blurb').addClass('hidden');
 		$('.blurb').eq(cardNumber).removeClass('hidden');
 	}
 
-	$('#blurbNav ul li').click(function() {
+	// clicking on blurbNav li
+	$('#blurbNav ul').on('click', 'li', function() {
 
+		// clearing the timer that rotates cards
 		clearInterval(blurbTimer)
 
+		// update which nav element has the active display styles
 		$('#blurbNav ul li').removeClass('activeBlurb');
 		$(this).addClass('activeBlurb');
 
+		// grab the index of the li clicked on
 		var i = $(this).index();
+
+		// pass that index to the swapCard function to display the corresponding blurb card
 		swapCard(i);
 	})
 
+
+	// clicking the view all button
+	$('#viewAll').click(function() {
+
+		// clear the timer that rotates the cards
+		clearInterval(blurbTimer);
+
+		// display all the blurbs
+		$('.blurb').removeClass('hidden');
+
+		// hide the blurb nav and the number 
+		$('#blurbNav').toggleClass('hidden');
+		$('#blurbs h4 .number').toggleClass('hidden');
+	});
+
+	// timer that rotates cards every 30 seconds
 	var blurbTimer = setInterval(function() {
 		if (currentCard < totalCards) {
 			currentCard++;
@@ -311,12 +342,39 @@ $(document).ready(function() {
 		swapCard(currentCard);
 		$('#blurbNav ul li').removeClass('activeBlurb');
 		$("#blurbNav ul li").eq(currentCard).addClass('activeBlurb');
-	}, 5000)
-
-	
+	}, 30000)
 
 	blurbTimer;	
 
+
+	//////////////////////////////////////////////////////
+	///// BUILDING THE MONTH/YEAR DROPDOWNS //////////////
+	//////////////////////////////////////////////////////
+
+
+	var initialYear = 2016
+
+	var currentYear = parseInt(year);
+
+	if (currentYear > initialYear) {
+		for (i = initialYear; i < currentYear; i++) {
+			option = "<option value='" + i + "'>" + i + "</option>";
+			$("#year").append(option);
+		} 
+	} else {
+			$("#year").append("<option value='2016'>2016</option>")
+		}
+
+
+	var monthsArray = ["January", "February", "March", "April","May", "June", "July", "August", "September", "October", "November", "December"];
+
+	var month = lastDate.getMonth();
+	console.log(monthsArray[month]);
+
+	// if year selected < = current year
+		// build months with for loop, 0-12
+	// else if year selected  = current year
+		// build months with for loop, starting at 0, and counting up to current month
 
 	/*
 	------------------------------------------------------------------------------------------

@@ -101,6 +101,16 @@ googletag.enableServices();
 
 		<div class="leftWell">
 
+			<h5>View jobs reports from other months:</h5>
+
+			<select id="year">
+
+			</select>
+
+			<select id="month" class="hidden">
+
+			</select>
+
 			<header id="storyHead" class="clearFix">
 				<div class="headerImage">
 					<h3>Texas Monthly Jobs Report: {{latestReport.month}} {{latestReport.year}}</h3>
@@ -132,13 +142,14 @@ googletag.enableServices();
 
 			<section id="blurbs">
 
-				<nav id="blurbNav">
+				<nav id="blurbNav" class="clearFix">
 					<ul>
 						<li class="activeBlurb">1</li>
 						{% if latestReport.blurb2 %}<li>2</li> {% endif %}
 						{% if latestReport.blurb3 %}<li>3</li> {% endif %}
 						{% if latestReport.blurb4 %}<li>4</li> {% endif %}
 					</ul>
+					<span id="viewAll">View all</span>
 				</nav>
 
 				<div class="blurb">
@@ -199,7 +210,7 @@ googletag.enableServices();
 
 					<div id="chart3" class="chart"> 
 						<h6>Texas jobs</h6>
-						<p class="chatter">{{latestReport.state_explainer | cleantext}}</p>
+						<p class="chatter">{{latestReport.state_explainer | cleantext}} (Monthly job change)</p>
 					</div>
 					<div id="chart4" class="chart">
 						<h6>Industry change</h6>
@@ -235,7 +246,6 @@ googletag.enableServices();
 
 	
 
-
 	<section class="credits clearFix">
 		<p>Author: <a href="mailto:emailaddress">Name</a></p>
 		<p>Editor: <a href="mailto:emailaddress">Name</a></p>
@@ -246,6 +256,8 @@ googletag.enableServices();
 	</section>
 	<!-- end credits -->
 
+
+	<!-- 
 	<section class="more clearFix">
 		<h5>More from The Dallas Morning News</h5>
 		<a class="clearFix" href="#">
@@ -264,6 +276,7 @@ googletag.enableServices();
 			<p>Description of the story goes in this spot here</p>
 		</a>
 	</section>
+	-->
 	<!-- end more -->
 
 		<div class="shareComments">   		
@@ -292,7 +305,8 @@ googletag.enableServices();
 		 	{% endfor %}
 		 ]
 
-		 console.log(jobsReport);
+		 var lastDate = new Date("{{lastReport.date}}");
+
 	</script>
 {%endblock%}
 

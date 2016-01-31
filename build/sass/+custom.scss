@@ -11,7 +11,7 @@
 @import 'mixins';
 
 $tableBar: #efebde;
-$black245: rgb(245,245,245);
+$black240: rgb(240,240,240);
 
 $custom: Oswald, Arial, sans-serif;
 
@@ -81,8 +81,21 @@ p.intro {
 
 #blurbNav {
 	position: absolute;
-	top: 10px;
+	top: 15px;
 	right: 10px;
+	ul, span {
+		float: left;
+	}
+	ul {
+		margin-right: 10px;
+	}
+	span {
+		font-family: $custom;
+		@include type(1.4rem, 3rem, 0);
+		color: $dmnblue;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
 }
 
 #blurbNav ul li {
@@ -113,9 +126,8 @@ p.intro {
 #blurbs {
 	margin-top: 2.4rem;
 	padding: 60px 60px 60px 100px;
-	background-color: $black245;
+	background-color: $black240;
 	position: relative;
-	border: 5px solid $black33;
 	h4, p {
 		font-family: $sans;
 	}
@@ -141,6 +153,10 @@ p.intro {
 	p {
 		@include type(1.6rem, 2.4rem, 0);
 	}
+}
+
+.blurb {
+	margin-bottom: 1.2rem;
 }
 
 
@@ -225,5 +241,5 @@ rect {
 	font-family: "Open Sans", Arial, sans-serif;
 }
 .hidden {
-	display: none;
+	display: none !important;
 }
