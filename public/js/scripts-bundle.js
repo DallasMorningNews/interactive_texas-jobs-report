@@ -110,9 +110,9 @@ $(document).ready(function() {
 			.orient("bottom")
 			.outerTickSize(0)
 			.tickFormat(function(d) {
-				if (d3.time.format("%b")(d) === "Jan") {
+				if (d3.time.format("%b")(d) === "Jan" || d === d3.min(dataset).month ) {
 					return ("’" + d3.time.format("%Y")(d).slice(-2));
-				}
+				} 
 			});
 
 
@@ -352,29 +352,86 @@ $(document).ready(function() {
 	//////////////////////////////////////////////////////
 
 
-	var initialYear = 2016
+	var monthsArray = ["January", "February", "March", "April","May", "June", "July", "August", "September", "October", "November", "December"];
+
+	var lastMonth = lastDate.getMonth();
+	var lastYear = lastDate.getFullYear();
+
+	var selectedYear;
+	var selectedMonth;
+
+	var initialYear = 2015;
 
 	var currentYear = parseInt(year);
 
-	if (currentYear > initialYear) {
-		for (i = initialYear; i < currentYear; i++) {
+		for (i = initialYear; i <= lastYear; i++) {
 			option = "<option value='" + i + "'>" + i + "</option>";
 			$("#year").append(option);
 		} 
-	} else {
-			$("#year").append("<option value='2016'>2016</option>")
-		}
 
 
-	var monthsArray = ["January", "February", "March", "April","May", "June", "July", "August", "September", "October", "November", "December"];
+	
 
-	var month = lastDate.getMonth();
-	console.log(monthsArray[month]);
+	$('#year').change(function() {
+		
+
+		$("#year option:selected").each(function() {
+			selectedYear = $(this).text();
+		})
+
+		buildMonths(selectedYear);
+	})
+
+	$('#month').change(function() {
+
+		
+
+		$("#month option:selected").each(function() {
+			selectedMonth = $(this).text().substring(0,3);
+		})
+
+		$(".viewReport").removeClass('hidden').attr("href", "/texas-jobs-report/reports/" + selectedYear + "/" + selectedMonth);
+
+
+	})
+
 
 	// if year selected < = current year
 		// build months with for loop, 0-12
 	// else if year selected  = current year
 		// build months with for loop, starting at 0, and counting up to current month
+
+
+	function buildMonths(selectedYear) {
+
+		$('#month').empty();
+		selectedYear = parseInt(selectedYear);
+
+		$('#month').append("<option value='' disabled selected>Month</option>");
+
+		if (selectedYear < year && selectedYear !== 2015) {
+			console.log('true');
+			for (i=0; i<12; i++) {
+				option = "<option value='" + monthsArray[i] + "'>" + monthsArray[i] + "</option>";
+				$("#month").append(option);
+			} 
+		} else if (selectedYear == 2015) {
+
+			for (i=9; i<12; i++) {
+				option = "<option value='" + monthsArray[i] + "'>" + monthsArray[i] + "</option>";
+				$("#month").append(option);
+			}
+
+		} else {
+			for (i=0; i <= lastMonth; i++) {
+				option = "<option value='" + monthsArray[i] + "'>" + monthsArray[i] + "</option>";
+				$("#month").append(option);
+			}
+		}
+
+		$('#month').removeClass('hidden');
+
+	}
 
 	/*
 	------------------------------------------------------------------------------------------

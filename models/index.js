@@ -6,6 +6,7 @@ module.exports = function(db, cb){
             date: Date,
             month: String,
             year: Number,
+            publish_date: String,
             image: String,
             image_credit: String,
             image_cutline: {type: 'text', big: true},

@@ -879,17 +879,13 @@ XX. ADS
   margin-top: 0; }
   #storyHead h3 {
     padding-left: 5px;
-    margin-left: 40px;
+    margin: 0 0 2.4rem 40px;
     background-color: #212121;
     display: inline-block;
     color: white;
     font-family: Oswald, Arial, sans-serif;
     padding: 0 10px;
-    height: 30px;
-    margin-top: 12px;
-    position: absolute;
-    top: 10px;
-    left: 10px; }
+    height: 30px; }
     #storyHead h3:before {
       content: "";
       display: block;
@@ -1019,18 +1015,56 @@ p.intro {
       .rightWell table td:last-of-type {
         text-align: right; }
 
+#selectOption {
+  margin-bottom: 2.4rem; }
+  #selectOption select {
+    font-size: 1.6rem;
+    margin: .6rem 5% 0 0;
+    padding: 5px; }
+  #selectOption h6 {
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    margin-bottom: 1.2rem; }
+
+#year {
+  width: 25%;
+  float: left;
+  display: inline-block; }
+
+#month {
+  width: 35%;
+  float: left; }
+
+.viewReport {
+  font-weight: bold;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  margin-bottom: 0;
+  background-color: #0185d3;
+  color: white;
+  width: 30%;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: .4rem;
+  border-radius: 3px;
+  transition: all .1s ease-out; }
+  .viewReport:hover {
+    background-color: #01456e;
+    text-decoration: none; }
+  .viewReport:visited {
+    color: white; }
+
 .imageBlock {
   margin-bottom: 2.4rem; }
 
 .chart {
   width: 280px;
-  float: left;
-  position: relative; }
+  position: relative;
+  margin-bottom: 2.4rem; }
   .chart:last-of-type {
     margin-right: 0; }
-
-.block {
-  margin-bottom: 2.4rem; }
 
 .chatter {
   font-size: 1.3rem;

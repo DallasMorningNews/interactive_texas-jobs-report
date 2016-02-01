@@ -47,17 +47,13 @@ $custom: Oswald, Arial, sans-serif;
 			margin-top: -12px;
 		}
 		padding-left: 5px;
-		margin-left: 40px;
+		margin: 0 0 2.4rem 40px;
 		background-color: $black33;
 		display: inline-block;
 		color: white;
 		font-family: $custom;
 		padding: 0 10px;
 		height: 30px;
-		margin-top: 12px;
-		position: absolute;
-		top: 10px;
-		left: 10px;
 	}
 }
 
@@ -196,21 +192,60 @@ p.intro {
 	}
 }
 
+#selectOption {
+	margin-bottom: 2.4rem;
+	select {
+		font-size: 1.6rem;
+		margin: .6rem 5% 0 0;
+		padding: 5px;
+	}
+	h6 {
+		font-weight: normal;
+		@include type(1.4rem, 1.8rem, 1.2rem);
+	}
+}
+#year {
+	width: 25%;
+	float: left;
+	display: inline-block;
+}
+#month {
+	width: 35%;
+	float: left;
+}
+.viewReport {
+	font-weight: bold;
+	@include type(1.4rem, 2.4rem, 0)
+	background-color: $dmnblue;
+	color: white;
+	width: 30%;
+	display: inline-block;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: .4rem;
+	border-radius: 3px;
+	transition: all .1s ease-out;
+	&:hover {
+		background-color: #01456e;
+		text-decoration: none;
+	}
+	&:visited {
+		color: white;
+	}
+
+}
+
 .imageBlock {
 	margin-bottom: 2.4rem;
 }
 
 .chart {
 	width: 280px;
-	float: left;
 	position: relative;
+	margin-bottom: 2.4rem;
 	&:last-of-type {
 		margin-right: 0;
 	}
-}
-
-.block {
-	margin-bottom: 2.4rem;
 }
 .chatter {
 	@include type(1.3rem, 1.8rem, 1.2rem);

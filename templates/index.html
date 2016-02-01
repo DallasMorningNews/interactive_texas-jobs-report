@@ -1,5 +1,7 @@
 {%extends 'base.html'%}
 {%import 'partials/img.html' as img%}
+{% import "_static.html" as static %}
+
 
 
 {%block custom_meta%}
@@ -34,7 +36,6 @@
 
 {%block custom_head%}
 {%endblock%}
-
 
 
 
@@ -101,19 +102,13 @@ googletag.enableServices();
 
 		<div class="leftWell">
 
-			<h5>View jobs reports from other months:</h5>
-
-			<select id="year">
-
-			</select>
-
-			<select id="month" class="hidden">
-
-			</select>
 
 			<header id="storyHead" class="clearFix">
 				<div class="headerImage">
 					<h3>Texas Monthly Jobs Report: {{latestReport.month}} {{latestReport.year}}</h3>
+
+	
+
 
 					{% if latestReport.image %}
 						<div class="imageBlock">
@@ -123,6 +118,8 @@ googletag.enableServices();
 					{% endif %}
 
 				</div>
+
+
 
 				<h1>{{latestReport.main_headline | cleantext}}</h1>
 				<h2>{{latestReport.main_deck | cleantext}}</h2>
@@ -186,6 +183,16 @@ googletag.enableServices();
 
 		<div class="rightWell">
 
+			<div id="selectOption" class="clearFix">
+				<h6>Select a year and month to view jobs reports from previous periods:</h6>
+				<select id="year">
+					<option value="" disabled selected>Year</option>
+				</select>
+				<select id="month" class="hidden">
+					<option value="" disabled selected>Month</option>
+				</select>
+				<a href="" class="viewReport hidden">View</a>
+			</div>
 
 			<div id="charts" class="clearFix">
 
