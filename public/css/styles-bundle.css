@@ -320,6 +320,7 @@ VI. STORY HEAD, BYLINES AND INTRO
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 1.4rem;
   font-style: italic;
+  line-height: 1.8rem;
   margin: 0 2.4rem .6rem 0; }
 
 .bylineBlock p:last-of-type {
@@ -346,8 +347,8 @@ p.subhead {
 
 @media (max-width: 860px) {
   #storyHead h1 {
-    font-size: 4.8rem;
-    line-height: 5.4rem;
+    font-size: 4rem;
+    line-height: 4.6rem;
     margin-bottom: 1.8rem; }
   #storyHead h2 {
     font-size: 2.4rem;
@@ -355,17 +356,22 @@ p.subhead {
     margin-bottom: 3rem; }
   #storyHead h3 {
     font-size: 1.4rem;
-    line-height: 1.8rem; }
+    line-height: 2.8rem; }
   .dropcap {
     font-size: 12rem;
     line-height: 8rem;
-    margin: 2rem .5rem 0 0; } }
+    margin: 2rem .5rem 0 0; }
+  p.intro {
+    font-size: 1.6rem;
+    line-height: 2.4rem; } }
 
 @media (max-width: 500px) {
   #storyHead h1 {
     font-size: 4.2rem;
     line-height: 4.8rem;
     letter-spacing: 0; }
+  #storyHead h3 {
+    font-size: 1.1rem; }
   .dropcap {
     font-size: 10rem;
     line-height: 7.6rem; } }
@@ -874,6 +880,16 @@ XX. ADS
   .headerImage img {
     margin-bottom: 0; }
 
+@media (max-width: 900px) {
+  .headerImage {
+    margin-bottom: 0; }
+    .headerImage .cutline {
+      background-color: initial;
+      color: #212121;
+      position: relative;
+      bottom: auto;
+      padding: 0; } }
+
 #storyHead {
   font-family: "Open Sans", Arial, sans-serif;
   margin-top: 0; }
@@ -988,6 +1004,10 @@ p.intro {
 .blurb {
   margin-bottom: 1.2rem; }
 
+@media (max-width: 860px) {
+  #blurbs {
+    padding: 60px 40px 40px 80px; } }
+
 .rightWell {
   width: 290px;
   float: right;
@@ -1095,3 +1115,27 @@ rect {
 
 .hidden {
   display: none !important; }
+
+@media (max-width: 800px) {
+  .leftWell, .rightWell {
+    float: none; }
+  .leftWell {
+    padding: 0 0;
+    border-right: none;
+    width: 100%; }
+  .rightWell {
+    width: 590px;
+    margin: 2.4rem auto; }
+  .chart {
+    float: left;
+    margin-right: 30px; }
+    .chart:last-of-type {
+      margin-right: 0; } }
+
+@media (max-width: 675px) {
+  .rightWell {
+    width: 100%; }
+  .chart {
+    float: none;
+    width: 100%;
+    margin-right: 0px; } }
