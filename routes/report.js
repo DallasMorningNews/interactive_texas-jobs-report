@@ -31,7 +31,7 @@ module.exports = function(app){
 
 
 
-			res.render("index.html", meta);
+			res.render("report.html", meta);
 
 		});
 
