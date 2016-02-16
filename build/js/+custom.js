@@ -312,7 +312,7 @@ $(document).ready(function() {
 
 				chartWidth = $('.rightWell').width();
 
-				$('.chartd3 svg').remove();
+				$('.chart svg').remove();
 
 				drawChart("chart1", jobsReport, "texas");
 				drawChart("chart2", jobsReport, "dfw");
