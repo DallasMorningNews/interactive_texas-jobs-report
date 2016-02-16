@@ -360,6 +360,7 @@ VI. STORY HEAD, BYLINES AND INTRO
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 1.4rem;
   font-style: italic;
+  line-height: 1.8rem;
   margin: 0 2.4rem .6rem 0;
 }
 .bylineBlock p:last-of-type {
@@ -387,8 +388,8 @@ p.subhead {
 
 @media (max-width: 860px) {
   #storyHead h1 {
-    font-size: 4.8rem;
-    line-height: 5.4rem;
+    font-size: 4rem;
+    line-height: 4.6rem;
     margin-bottom: 1.8rem;
   }
   #storyHead h2 {
@@ -398,12 +399,16 @@ p.subhead {
   }
   #storyHead h3 {
     font-size: 1.4rem;
-    line-height: 1.8rem;
+    line-height: 2.8rem;
   }
   .dropcap {
     font-size: 12rem;
     line-height: 8rem;
     margin: 2rem .5rem 0 0;
+  }
+  p.intro {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
   }
 }
 
@@ -412,6 +417,9 @@ p.subhead {
     font-size: 4.2rem;
     line-height: 4.8rem;
     letter-spacing: 0;
+  }
+  #storyHead h3 {
+    font-size: 1.1rem;
   }
   .dropcap {
     font-size: 10rem;

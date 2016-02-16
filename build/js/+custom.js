@@ -11,6 +11,9 @@ $(document).ready(function() {
 	$('.copyright').text(year);
 
 
+	var chartWidth = $('.rightWell').width();
+	var windowWidth = $(window).width();
+
 
 
 	function drawChart(targetDiv, data, datapoint) {
@@ -26,25 +29,44 @@ $(document).ready(function() {
 			return {
 				month: parseDate(d.period),
 				value: d[datapoint]
-			}
-		})
+			};
+		});
 
 		console.log(dataset);
 
 		// setting up the chart dimensions and margins
-		var margin = {top: 5, right: 0, bottom: 30, left: 30},
-			w = 280 - margin.left - margin.right,
+		
+		var margin, w, h;
+
+		console.log(windowWidth);
+
+		if (windowWidth > 675) {
+			margin = {top: 5, right: 0, bottom: 30, left: 30};
+			w = 280 - margin.left - margin.right;
+			h = 220 - margin.top - margin.bottom;	
+		} else {
+			margin = {top: 5, right: 0, bottom: 30, left: 30};
+			w = chartWidth - margin.left - margin.right;
 			h = 220 - margin.top - margin.bottom;
+		}
+		
 
 		if (datapoint === "stateEmployment") {
-			margin.left = 50;
+			if (windowWidth >675) {
+			margin = {top: 5, right: 0, bottom: 30, left: 50};
 			w = 280 - margin.left - margin.right;
+			h = 220 - margin.top - margin.bottom;	
+		} else {
+			margin = {top: 5, right: 0, bottom: 30, left: 50};
+			w = chartWidth - margin.left - margin.right;
+			h = 220 - margin.top - margin.bottom;
+		}
 		}
 
 		// setting up the xScale. Ordinal for bar charts, based off the month property of the data
 		var xScale = d3.scale.ordinal()
 			.domain(dataset.map(function(d) {
-				return d.month
+				return d.month;
 			}))
 			.rangeRoundBands([0, w], 0.2);
 
@@ -58,10 +80,10 @@ $(document).ready(function() {
 
 			yScale.domain(
 				[d3.min(dataset, function(d) {
-					return (parseInt(d.value) - 5000)
+					return (parseInt(d.value) - 5000);
 				}), 
 				d3.max(dataset, function(d)  {
-					return (parseInt(d.value) + 5000)
+					return (parseInt(d.value) + 5000);
 				})]); 
 
 			// yScale.domain(d3.extent(dataset, function(d){
@@ -79,7 +101,7 @@ $(document).ready(function() {
 			.orient("bottom")
 			.outerTickSize(0)
 			.tickFormat(function(d) {
-				return d3.time.format("%b")(d).charAt(0)
+				return d3.time.format("%b")(d).charAt(0);
 			});
 
 		// setting up the right axis. ticks represent datapoint value as a percentage
@@ -229,7 +251,7 @@ $(document).ready(function() {
 						} else {
 							return "#0185d3";
 						}
-					})
+					});
 				});
 
 
@@ -272,12 +294,34 @@ $(document).ready(function() {
 	
 	}
 
-	var commafy = d3.format(",")
+	var commafy = d3.format(",");
 
 
 	drawChart("chart1", jobsReport, "texas");
 	drawChart("chart2", jobsReport, "dfw");
 	drawChart("chart3", jobsReport, "stateEmployment");
+
+
+	$(window).resize(function() {
+
+		setTimeout(function() {
+			var newWidth = $(window).width();
+
+			if (newWidth !== windowWidth) {
+				windowWidth = newWidth;
+
+				chartWidth = $('.rightWell').width();
+
+				$('.chartd3 svg').remove();
+
+				drawChart("chart1", jobsReport, "texas");
+				drawChart("chart2", jobsReport, "dfw");
+				drawChart("chart3", jobsReport, "stateEmployment");
+			}
+
+		}, 250);
+
+	});
 
 
 
@@ -303,7 +347,7 @@ $(document).ready(function() {
 	$('#blurbNav ul').on('click', 'li', function() {
 
 		// clearing the timer that rotates cards
-		clearInterval(blurbTimer)
+		clearInterval(blurbTimer);
 
 		// update which nav element has the active display styles
 		$('#blurbNav ul li').removeClass('activeBlurb');
@@ -314,7 +358,7 @@ $(document).ready(function() {
 
 		// pass that index to the swapCard function to display the corresponding blurb card
 		swapCard(i);
-	})
+	});
 
 
 	// clicking the view all button
@@ -342,7 +386,7 @@ $(document).ready(function() {
 		swapCard(currentCard);
 		$('#blurbNav ul li').removeClass('activeBlurb');
 		$("#blurbNav ul li").eq(currentCard).addClass('activeBlurb');
-	}, 30000)
+	}, 30000);
 
 	blurbTimer;	
 
@@ -377,10 +421,10 @@ $(document).ready(function() {
 
 		$("#year option:selected").each(function() {
 			selectedYear = $(this).text();
-		})
+		});
 
 		buildMonths(selectedYear);
-	})
+	});
 
 	$('#month').change(function() {
 
@@ -388,18 +432,12 @@ $(document).ready(function() {
 
 		$("#month option:selected").each(function() {
 			selectedMonth = $(this).text().substring(0,3);
-		})
+		});
 
 		$(".viewReport").removeClass('hidden').attr("href", "/texas-jobs-report/reports/" + selectedYear + "/" + selectedMonth);
 
 
-	})
-
-
-	// if year selected < = current year
-		// build months with for loop, 0-12
-	// else if year selected  = current year
-		// build months with for loop, starting at 0, and counting up to current month
+	});
 
 
 	function buildMonths(selectedYear) {
@@ -433,220 +471,6 @@ $(document).ready(function() {
 
 	}
 
-	/*
-	------------------------------------------------------------------------------------------
-	CODE FOR SLIDESHOWS, UN-COMMENT THE TWO LINES ABOVE AND BELOW THE CODE AS INSTRUCTED TO USE
-	------------------------------------------------------------------------------------------
-	*/
-
-	/* DELETE THIS ENTIRE LINE
-
-	//setting up variables for the slideshow
-
-	var slideCounter = 0,
-		$nextButton = $('.nextButton'),
-		$previousButton = $('.previousButton'),
-		$slideButton = $('.slideButton');
-		$slideCutline = $('.slide .cutline'),
-		totalSlides = $('.slide').length,
-		$slideshow = $('.slideshow'),
-		slideHeight = $('.slide img').height();
-
-	// checks which image we're on in the slideshow
-	// if it's the first, hide the previous button
-	// if it's the last, hide the next button
-	// else show the previous and last buttons 
-
-	function slidePosition() {
-		if (slideCounter === 0) {
-			$previousButton.hide();
-		} else if ( slideCounter === (totalSlides - 1) ) {
-			$nextButton.hide();
-		} else {
-			$previousButton.show();
-			$nextButton.show();
-		}
-	}
-
-	// advancing the slideshow by moving the current slide to the right
-	// then moving the next slide in from the left
-	// afterward, grab the file path and assign it to the next image's src attribute
-	// then check where we are in the slideshow
-
-	function advanceSlide() {
-		slideCounter ++;
-		$(this).siblings('.current').addClass('postSlide').removeClass('current');
-		$(this).siblings('.slide').eq(slideCounter).addClass('current').removeClass('preSlide');
-		var defaultImage = $(this).siblings('.slide').eq(slideCounter + 1).data('default');
-		var srcset = $(this).siblings('.slide').eq(slideCounter + 1).data('srcset');
-		$(this).siblings('.slide').eq(slideCounter + 1).children('img').attr('src', defaultImage).attr('srcset', srcset);;
-		slidePosition();
-	}
-
-	function swipeAdvance() {
-
-		if (slideCounter < totalSlides -1 ) {
-			slideCounter ++;
-			$(this).children('.current').addClass('postSlide').removeClass('current');
-			$(this).children('.slide').eq(slideCounter).addClass('current').removeClass('preSlide');
-			var defaultImage = $(this).children('.slide').eq(slideCounter + 1).data('default');
-			var srcset = $(this).children('.slide').eq(slideCounter + 1).data('srcset');
-			$(this).children('.slide').eq(slideCounter + 1).children('img').attr('src', defaultImage).attr('srcset', srcset);;
-			slidePosition();
-		}
-
-	}
-
-	// rewind the slideshow by moving the current slide to the left
-	// then move the previous slide back into view from the left
-	// then check where we are in the slideshow 
-
-	function rewindSlide() {
-		slideCounter --;
-		$(this).siblings('.current').addClass('preSlide').removeClass('current');
-		$(this).siblings('.slide').eq(slideCounter).addClass('current').removeClass('postSlide');
-		slidePosition();
-	}
-
-	function swipeRewind() {
-		if (slideCounter > 0 ) {
-			slideCounter --;
-			$(this).children('.current').addClass('preSlide').removeClass('current');
-			$(this).children('.slide').eq(slideCounter).addClass('current').removeClass('postSlide');
-			slidePosition();
-		}
-	}
-
-	// append a number and total length of slideshow to each cutline 
-
-	$slideCutline.each(function(k,v) {
-		var cutlinePrefix = "<strong> Slideshow — " + (k + 1) + " of " + totalSlides + ":</strong> ";
-		$(this).prepend(cutlinePrefix);
-	})
-
-	//running the slidePosition initially to hide previous button
-	slidePosition();
-
-	//setting the slideshow button position to be halfway down the slideshow
-	console.log (slideHeight);
-	$slideButton.css('top', ( (slideHeight / 2) - ($slideButton.height() / 2) ) )
-
-	//binding click and swipe events to the next and previous button
-
-	$nextButton.on('click', advanceSlide);
-	$previousButton.on('click', rewindSlide);
-
-	// if you want to be able to swipe the slideshow on touch devices, un-note the following two lines
-	// and make sure you call jquery.swipe.min.js in the index file
-
-	$slideshow.on("swipeleft", swipeAdvance);
-	$slideshow.on("swiperight", swipeRewind);
-
-	DELETE THIS ENTIRE LINE */
-
-
-
-
-
-
-	/*
-	------------------------------------------------------------------------------------------
-	CODE FOR DROP BULLETS, UN-COMMENT THE TWO LINES ABOVE AND BELOW THE CODE AS INSTRUCTED TO USE
-	------------------------------------------------------------------------------------------
-	*/
-
-	/* DELETE THIS ENTIRE LINE	
-
-	var $dropHead = $('.dropList .dropHed'),
-		$dropTweet = $('.dropList .fa-twitter');
-
-	$dropHead.on('click', function(){
-		$(this).next(".dropText").slideToggle(200); 
-		$(this).find(".fa").toggleClass('fa-plus').toggleClass('fa-minus');
-	});
-
-	$dropTweet.on("click", function(){
-		var shareID = $(this).closest(".dropList").attr("id"),
-			shareURL = "&url="+encodeURIComponent(window.location.href + "#" + shareID),
-			shareText = encodeURIComponent($(this).closest(".dropList").find("h4").text()),
-			shareLink = "https://twitter.com/intent/tweet?text="+ shareText + shareURL + "&via=dallasnews";
-		window.open(shareLink, '_blank');
-	});
-
-	DELETE THIS ENTIRE LINE */
-
-
-
-
-	/*
-	------------------------------------------------------------------------------------------
-	CODE FOR SYNOPSIS BLOCK, UN-COMMENT THE TWO LINES ABOVE AND BELOW THE CODE AS INSTRUCTED TO USE
-	------------------------------------------------------------------------------------------
-	*/
-
-	/* DELETE THIS ENTIRE LINE	
-
-	$(".synopsis p").on("click", function() {
-		var shareURL = "&url=" + encodeURIComponent(window.location.href),
-			shareText = $(this).text(),
-			twitterTag = "dallasnews";
-			
-		var maxLength = 97 // maximum number of characters to extract
-
-		var trimmedText = shareText.substr(0, maxLength);
-
-		trimmedText = trimmedText.substr(0, Math.min(trimmedText.length, trimmedText.lastIndexOf(" ")))
-
-		trimmedText = trimmedText.slice(1);
-
-		trimmedText += " ... "
-
-		trimmedText = encodeURIComponent(trimmedText); 
-		
-		var shareLink = "http://twitter.com/intent/tweet?text=" + trimmedText + shareURL + "&via=" + twitterTag;
-		window.open(shareLink, "_blank");
-	})
-
-	DELETE THIS ENTIRE LINE */
-
-
-
-
-	/*
-	------------------------------------------------------------------------------------------
-	NDN VIDEO ASPECT RESIZER, UN-COMMENT THE TWO LINES ABOVE AND BELOW THE CODE AS INSTRUCTED TO USE
-	------------------------------------------------------------------------------------------
-	*/
-
-	/* DELETE THIS ENTIRE LINE	  
-
-	//caching a pointer to the jquery element
-
-	var $videoWrapper = ''
-
-	if ($('.ndn_embed')) {
-		$videoWrapper = $('.ndn_embed');
-		scaleVideo();
-	}
-
-		function scaleVideo() {
-
-			videoWidth = $videoWrapper.width(); //grabs the width of the video player
-			videoHeight = videoWidth * .5625; //sets a variable equal to 56.25% of the width (the correct aspect ratio for the videos)
-
-			$videoWrapper.css('height', videoHeight); //assings that height variable as the player's height in the css
-		}
-
-
-	$(window).resize(function() {
-		scaleVideo(); //runs the video aspect resizer when the width of the browser is changed
-	})
-
-	DELETE THIS ENTIRE LINE */
-
-
 });
 
-// $(window).load(function() {
-// 	console.log(jobsReport);
-// })
+

@@ -31,6 +31,18 @@ $custom: Oswald, Arial, sans-serif;
 	}
 }
 
+@media (max-width: 900px) {
+	.headerImage {
+		margin-bottom: 0;
+		.cutline {
+			background-color: initial;
+			color: $black33;
+			position: relative;
+			bottom: auto;
+			padding: 0;
+		}
+	}
+}
 
 
 #storyHead {
@@ -155,6 +167,11 @@ p.intro {
 	margin-bottom: 1.2rem;
 }
 
+@media (max-width: 860px) {
+	#blurbs {
+		padding: 60px 40px 40px 80px;
+	}
+}
 
 .rightWell {
 	width: 290px;
@@ -278,3 +295,41 @@ rect {
 .hidden {
 	display: none !important;
 }
+
+@media (max-width: 800px)  {
+
+	.leftWell, .rightWell {
+		float: none;
+	}
+
+	.leftWell {
+		padding: 0 0;
+		border-right: none;	
+		width: 100%;
+	}
+
+	.rightWell {
+		width: 590px;
+		margin: 2.4rem auto;
+	}
+
+	.chart {
+		float: left;
+		margin-right: 30px;
+		&:last-of-type {
+			margin-right: 0;
+		}
+	}
+}
+
+@media (max-width: 675px) {
+	.rightWell {
+		width: 100%;
+	}
+	.chart {
+		float: none;
+		width: 100%;
+		margin-right: 0px;
+	}
+}
+
