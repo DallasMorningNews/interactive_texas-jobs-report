@@ -136,7 +136,17 @@ p.intro {
 
 @media (max-width: 860px) {
   #blurbs {
-    padding: 60px 40px 40px 80px; } }
+    padding: 60px 40px 40px 80px; }
+    #blurbs p {
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+      margin-bottom: 0; } }
+
+@media (max-width: 500px) {
+  #blurbs {
+    padding: 60px 20px 20px 20px; }
+    #blurbs h4 .number {
+      display: none; } }
 
 .rightWell {
   width: 290px;

@@ -197,7 +197,7 @@ googletag.enableServices();
 			<div id="charts" class="clearFix">
 
 				<h5>{{latestReport.jobless_head}}</h5>
-				<p class="chatter">{{latestReport.jobless_chatter | cleantext}} (Touch the bars to see individual values)</p>
+				<p class="chatter">{{latestReport.jobless_chatter | cleantext}} Latest month’s data is preliminary. (Touch the bars to see individual values)</p>
 
 				<div class="block clearFix">
 
@@ -250,41 +250,15 @@ googletag.enableServices();
 	</div>
 	<!-- end jobsReportContent -->
 
-
-	
-
-	<section class="credits clearFix">
-		<p>Author: <a href="mailto:emailaddress">Name</a></p>
-		<p>Editor: <a href="mailto:emailaddress">Name</a></p>
-		<p>Copy Editor: <a href="mailto:emailaddress">Name</a></p>
-		<p>Photos: <a href="mailto:emailaddress">Name</a></p>
-		<p>Graphics: <a href="mailto:emailaddress">Name</a></p>
-		<p>Designer: <a href="mailto:emailaddress">Name</a></p>
 	</section>
-	<!-- end credits -->
 
+	    <div id="dfpAdPositionTop" class="ad"> <!-- to remove bottom and top rules, add class "noRule" -->
+	        <p class="adLabel">Advertisement</p>
+	        <script type="text/javascript">googletag.display('dfpAdPositionTop');</script>
+	    </div> 
+	    <!-- end adBlock -->
 
-	<!-- 
-	<section class="more clearFix">
-		<h5>More from The Dallas Morning News</h5>
-		<a class="clearFix" href="#">
-			<img src="images/_defaultImage.jpg" alt="#" />
-			<h6>Story title goes here</h6>
-			<p>Description of the story goes in this spot here</p>
-		</a>
-		<a class="clearFix" href="#">
-			<img src="images/_defaultImage.jpg" alt="#" />
-			<h6>Story title goes here</h6>
-			<p>Description of the story goes in this spot here</p>
-		</a>
-		<a class="clearFix" href="#">
-			<img src="images/_defaultImage.jpg" alt="#" />
-			<h6>Story title goes here</h6>
-			<p>Description of the story goes in this spot here</p>
-		</a>
-	</section>
-	-->
-	<!-- end more -->
+	<section class="contentWell">
 
 		<div class="shareComments">   		
 		<ul id="share-bar2" class="width-auto-hack"></ul>

@@ -366,6 +366,10 @@ VI. STORY HEAD, BYLINES AND INTRO
 .bylineBlock p:last-of-type {
   margin-right: 0;
 }
+
+.bylineBlock a {
+  display: inline-block;
+}
 p.intro {
   font-size: 1.8rem;
   line-height: 3rem;

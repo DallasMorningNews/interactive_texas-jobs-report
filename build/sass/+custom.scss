@@ -170,6 +170,18 @@ p.intro {
 @media (max-width: 860px) {
 	#blurbs {
 		padding: 60px 40px 40px 80px;
+		p {
+			@include type(1.4rem, 1.8rem, 0);
+		}
+	}
+}
+
+@media (max-width: 500px) {
+	#blurbs {
+		padding: 60px 20px 20px 20px;
+		h4 .number {
+			display: none;
+		}
 	}
 }
 

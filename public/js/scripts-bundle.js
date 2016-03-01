@@ -370,8 +370,7 @@ $(document).ready(function() {
 		// display all the blurbs
 		$('.blurb').removeClass('hidden');
 
-		// hide the blurb nav and the number 
-		$('#blurbNav').toggleClass('hidden');
+		// hide the blurb  and the number 
 		$('#blurbs h4 .number').toggleClass('hidden');
 	});
 
