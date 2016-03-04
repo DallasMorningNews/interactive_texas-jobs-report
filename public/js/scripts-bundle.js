@@ -24,7 +24,6 @@ $(document).ready(function() {
 
 		// creating our custom dataset based on the data and datapoint pased
 		dataset = data.map(function(d) {
-			console.log(d);
 			return {
 				month: parseDate(d.period),
 				value: d[datapoint]
