@@ -21,7 +21,6 @@ $(document).ready(function() {
 		// date parser
 		var parseDate = d3.time.format("%b %Y").parse;
 
-		console.log(datapoint);
 
 		// creating our custom dataset based on the data and datapoint pased
 		dataset = data.map(function(d) {
@@ -32,13 +31,11 @@ $(document).ready(function() {
 			};
 		});
 
-		console.log(dataset);
 
 		// setting up the chart dimensions and margins
 		
 		var margin, w, h;
 
-		console.log(windowWidth);
 
 		if (windowWidth > 675) {
 			margin = {top: 5, right: 0, bottom: 30, left: 30};
@@ -400,6 +397,8 @@ $(document).ready(function() {
 	var lastMonth = lastDate.getMonth();
 	var lastYear = lastDate.getFullYear();
 
+	console.log(lastYear)
+
 	var selectedYear;
 	var selectedMonth;
 
@@ -408,6 +407,7 @@ $(document).ready(function() {
 	var currentYear = parseInt(year);
 
 		for (i = initialYear; i <= lastYear; i++) {
+			console.log(i);
 			option = "<option value='" + i + "'>" + i + "</option>";
 			$("#year").append(option);
 		} 
@@ -447,7 +447,6 @@ $(document).ready(function() {
 		$('#month').append("<option value='' disabled selected>Month</option>");
 
 		if (selectedYear < year && selectedYear !== 2015) {
-			console.log('true');
 			for (i=0; i<12; i++) {
 				option = "<option value='" + monthsArray[i] + "'>" + monthsArray[i] + "</option>";
 				$("#month").append(option);
