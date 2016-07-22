@@ -46,12 +46,12 @@ require('dotenv').load();
 // process.env object is created by the dotenv load line above
 
 app.use(orm.express("mysql://"+process.env.DB_USER+":"+process.env.DB_PASS+"@"+process.env.DB_HOST, {
-    
+
 
     define: function (db, models, next) {
 
         db.load("./models/index.js",function(err){
-          models.texas_jobs = db.models.texas_jobs_report; 
+          models.texas_jobs = db.models.texas_jobs_report;
         });
         // ...
 
