@@ -2,7 +2,9 @@
 var express = require('express'),
     nunjucks = require('nunjucks'),
     http = require('http'),
-    orm = require('orm');
+    orm = require('orm'),
+    cors = require('cors');
+
 
 
 
@@ -12,6 +14,9 @@ var express = require('express'),
 -------------------------------------------------------*/
 
 var app = express();
+
+app.use(cors());
+
 
 // Meta data
 var meta = require('./meta.json');
