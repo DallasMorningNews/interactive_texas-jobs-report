@@ -4,11 +4,10 @@ module.exports = function(app){
 	var meta = require('../meta.json');
 
 	app.post("/create-report", function (req, res) {
-
-		console.log(req.body);
+		console.log("test");
 
 		var data = req.body;
-
+		console.log(data);
 		var newReport = {
             date: data.date,
             month: data.month,
@@ -65,7 +64,7 @@ module.exports = function(app){
 		};
 
 		req.model.texas_jobs.create(newReport, function(err) {
-			console.log(newReport);	
+			console.log(newReport);
 			if(err){res.send(err);}
 			res.send(newReport);
 		});

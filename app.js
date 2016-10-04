@@ -4,6 +4,7 @@ var express = require('express'),
     http = require('http'),
     orm = require('orm'),
     cors = require('cors');
+    bodyParser = require('body-parser');
 
 
 
@@ -16,6 +17,7 @@ var express = require('express'),
 var app = express();
 
 app.use(cors());
+app.use(bodyParser.json());
 
 
 // Meta data

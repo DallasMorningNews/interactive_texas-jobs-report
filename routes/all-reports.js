@@ -4,7 +4,7 @@ module.exports = function(app){
 	var meta = require('../meta.json');
 
 	app.get("/all-reports", function (req, res) {
-
+		console.log("all reports coming");
 		//////////////////////////////////////////////
 		////// DATABASE REQUEST //////////////////////
 		//////////////////////////////////////////////
