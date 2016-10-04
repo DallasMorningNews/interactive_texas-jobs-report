@@ -65,6 +65,7 @@ module.exports = function(app){
 		};
 
 		req.model.texas_jobs.create(newReport, function(err) {
+			console.log(newReport);	
 			if(err){res.send(err);}
 			res.send(newReport);
 		});
