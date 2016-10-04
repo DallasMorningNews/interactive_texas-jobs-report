@@ -3,7 +3,7 @@ var express = require('express'),
     nunjucks = require('nunjucks'),
     http = require('http'),
     orm = require('orm'),
-    cors = require('cors');
+    cors = require('cors'),
     bodyParser = require('body-parser');
 
 

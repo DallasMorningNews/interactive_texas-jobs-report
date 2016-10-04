@@ -13,15 +13,15 @@ module.exports = function(app){
             month: data.month,
             year: data.year,
             publish_date: data.publish_date,
-            image: data.image_url,
+            image: data.image,
             image_credit: data.image_credit,
             image_cutline: data.image_cutline,
-            main_headline: data.main_hed,
+            main_headline: data.main_headline,
             main_deck: data.main_deck,
             byline: data.byline,
             title: data.position,
-            email: data.email,
-            twitter: data.twitter_tag,
+            email: data.author_email,
+            twitter: data.author_twitter,
             intro: data.intro,
             blurb1_head: data.blurb1_head,
             blurb1: data.blurb1,
@@ -40,7 +40,7 @@ module.exports = function(app){
             state_explainer: data.state_explainer,
             chart_source: data.chart_source,
             cat1: data.cat1,
-            cat1_amount: data.ca1_amount,
+            cat1_amount: data.cat1_amount,
             cat2: data.cat2,
             cat2_amount: data.cat2_amount,
             cat3: data.cat3,
@@ -63,7 +63,7 @@ module.exports = function(app){
             cat11_amount: data.cat11_amount
 		};
 
-		req.model.texas_jobs.create(newReport, function(err) {
+		req.models.texas_jobs.create(newReport, function(err) {
 			console.log(newReport);
 			if(err){res.send(err);}
 			res.send(newReport);
