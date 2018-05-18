@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     nodemon = require('gulp-nodemon'),
-    git = require('gulp-git'),
+    // git = require('gulp-git'),
     shell = require('shelljs'),
     changed = require('gulp-changed'),
     sass = require('gulp-sass'),
@@ -116,10 +116,10 @@ gulp.task('img',function () {
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
         }))
-      .pipe(rename(function (path)  { 
-                                      path.basename += ("-" + size.toString()); 
-                                      path.extname = path.extname.toLowerCase(); 
-                                      return path; 
+      .pipe(rename(function (path)  {
+                                      path.basename += ("-" + size.toString());
+                                      path.extname = path.extname.toLowerCase();
+                                      return path;
                                     }))
       .pipe(gulp.dest('./public/images'));
   }

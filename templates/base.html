@@ -9,7 +9,7 @@
 
 	{%endblock%}
 	<!-- End Custom Meta Data -->
-	
+
 	<meta property="fb:app_id" content="258290334265148"/>
 	<meta property="fb:page_id" content="20946638799"/>
 	<meta property="fb:admins" content="1043783589"/>
@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
 
+	<script type="text/javascript" src="//interactives.dallasnews.com/common/templates/v1.1/js/meter.js"></script>
 
 	<script type="text/javascript">
 		WebFont.load({
@@ -28,7 +29,7 @@
 		    families: ['Open+Sans', 'Merriweather'],
 		  }
 		});
-	</script> 
+	</script>
 
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -37,7 +38,7 @@
 	{%block custom_head%}
 	{%endblock%}
 
-	
+
 
 	<!--
 	================================
@@ -61,7 +62,7 @@
 	<header class="bg-black">
 		<a class="logo" href="http://www.dallasnews.com" id="top"><span class="sr-only">The Dallas Morning News</span></a>
 	</header>
-    
+
 	<article id="content">
 
 	{%block content%}
@@ -87,9 +88,9 @@
    			</div>
     		<!-- end bylineBlock -->
 
-      		<div class="shareComments shareCommentsTop">	
+      		<div class="shareComments shareCommentsTop">
 				<ul id="share-bar1" class="width-auto-hack"></ul>
-			</div>        		
+			</div>
 			<!-- end shareComments -->
 
 			<p class="intro"><span class="dropcap">A</span>n opening paragraph goes here. orem ipsum dolor sit amet, consectetur adipiscing elit. Nunc fermentum tortor a eleifend sagittis. Quisque laoreet elit vitae turpis aliquet tincidunt. Nulla molestie vitae purus eget dignissim. Quisque blandit nibh lorem, non mollis velit rutrum ac. Pellentesque pharetra mattis luctus.</p>
@@ -125,7 +126,7 @@
 			</section>
 			<!-- end more -->
 
-      		<div class="shareComments">   		
+      		<div class="shareComments">
 				<ul id="share-bar2" class="width-auto-hack"></ul>
                 <div id="comments"></div>
 			</div>
@@ -149,7 +150,7 @@
 
   	<script src="{{static.path('/js/dependency-bundle.js')}}"></script>
 	<script type="text/javascript" src="{{static.path('/js/scripts-bundle.js')}}"></script>
-	
+
 	{%block custom_foot%}
 	{%endblock%}
 
@@ -162,7 +163,7 @@
 			lang : 'en',
 			enabledProviders: 'facebook,twitter,google,linkedin,yahoo,messenger',
 			connectWithoutLoginBehavior: 'alwaysLogin'
-		}			
+		}
 	</script>
 	<!-- Gigya Templates -->
 	<script id="gigya-new-user-tmpl" type="text/x-jquery-tmpl">
@@ -177,7 +178,7 @@
 				<input id='gigya-new-user-button' style='width:auto;' type='button' value='Register' class='button-primary'>
 			</div>
 		</div>
-	</script>	
+	</script>
 	<script id="gigya-account-linking-tmpl" type="text/x-jquery-tmpl">
 		<div id='gigya-sep-wrap'>
 			<div class="sep-line"></div>
@@ -200,7 +201,7 @@
 				<input id='gigya-new-account-button' style='width:auto;' type='button' value='Link Accounts' class='button-primary'>
 			</div>
 		</div>
-	</script>	
+	</script>
 	<script id="gigya-header-tmpl" type="text/x-jquery-tmpl">
 		<div id='dialog-header'>
 			<div class="ui-helper-clearfix">
@@ -210,7 +211,7 @@
 				{{if isEmailExist}}, The email is already used, please provide a new email or link to an existing account.{{/if}}
 				{{if isNewUser}}{{/if}}
 			</p>
-			</div>	
+			</div>
 		</div>
 	</script>
 	{%endraw%}

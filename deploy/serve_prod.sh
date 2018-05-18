@@ -3,7 +3,7 @@ set -e
 
 ### Configuration ###
 
-SERVER=ubuntu@apps.dallasnews.com
+SERVER=ubuntu@52.5.68.162
 APP_DIR=/var/www/texas-jobs-report
 KEYFILE=~/.ssh/dmnapps.pem
 REMOTE_PATH=/etc/nginx/site-locations/texas-jobs-report
